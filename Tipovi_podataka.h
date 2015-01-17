@@ -39,6 +39,7 @@ typedef struct _Tablica_djelokruga{
 
 typedef struct _povratni_tip{
 	std::string ime;
+	std::string ime_varijable;
 	std::string tip;
 	bool l_izraz;
 	int broj;
