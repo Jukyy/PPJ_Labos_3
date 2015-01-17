@@ -9,7 +9,7 @@
 #include "class_definitions_Naredbena_struktura.h"
 #include "class_definitions_Deklaracije_i_definicije.h"
 #include "produkcije.h"
-//#include "FRISC/labeliranje.h"
+#include "FRISC/labeliranje.h"
 
 using namespace std;
 
