@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Naredba_skoka::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Naredba_skoka" << endl;
+    cerr << "Naredba_skoka" << endl;
 	if (produkcija.nodes[0].znak.substr(0,produkcija.nodes[0].znak.find(" ")) == "KR_CONTINUE" 
 		|| produkcija.nodes[0].znak.substr(0, produkcija.nodes[0].znak.find(" ")) == "KR_BREAK")
 		return produkcija1_2(produkcija, tablica);
@@ -21,8 +21,6 @@ povratni_tip Naredba_skoka::produkcija(Node produkcija, Tablica_djelokruga &tabl
 
 povratni_tip Naredba_skoka::produkcija1_2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
 	povratni_tip izvedbena_vrijednost;
-	if (tablica.is_loop == false)
-		throw form_error(produkcija);
 
 	//može se vratiti prazna izvedbena_vrijednost jer
 	//produkcija ništa nevraèa
@@ -47,12 +45,8 @@ povratni_tip Naredba_skoka::produkcija3(Node produkcija, Tablica_djelokruga &tab
 		}
 		if (found)
 			break;
-		if (nova_tablica.is_global) //U sluèaju ako se ni u globalnom dijelu nije našla funkcija
-			throw form_error(produkcija); //Ovo se nikada ne bi smilo dogoditi!!!!
 		nova_tablica = *nova_tablica.ugnijezdena_tablica;
 	}
-	if (ftip != "void")
-		throw form_error(produkcija);
 
 	//može se vratiti prazna izvedbena_vrijednost jer
 	//produkcija ništa nevraèa
@@ -81,12 +75,8 @@ povratni_tip Naredba_skoka::produkcija4(Node produkcija, Tablica_djelokruga &tab
 		}
 		if (found)
 			break;
-		if (nova_tablica.is_global) //U sluèaju ako se ni u globalnom dijelu nije našla funkcija
-			throw form_error(produkcija); //Ovo se nikada ne bi smilo dogoditi!!!!
 		nova_tablica = *nova_tablica.ugnijezdena_tablica;
 	}
-	if (!Ekvivaletni(izvedbena_vrijednost1.tip, ftip))
-		throw form_error(produkcija);
 	
 	//može se vratiti prazna izvedbena_vrijednost jer
 	//produkcija ništa nevraèa

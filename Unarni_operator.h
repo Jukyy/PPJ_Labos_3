@@ -7,7 +7,7 @@
 
 povratni_tip Unarni_operator::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Unarni_operator" << endl;
+    cerr << "Unarni_operator" << endl;
 	povratni_tip xy;
 	
 	//produkcija 1
@@ -26,7 +26,6 @@ povratni_tip Unarni_operator::produkcija(Node produkcija, Tablica_djelokruga &ta
     else if(produkcija.nodes.size() == 1
          && produkcija.nodes[0].znak.substr(0, produkcija.nodes[0].znak.find(" ")) == "KR_INT")
 	   xy = Unarni_operator::produkcija4(produkcija.nodes[0], tablica, ntip);
-    else throw form_error(produkcija);
 
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }

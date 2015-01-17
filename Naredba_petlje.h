@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Naredba_petlje::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Naredba_petlje" << endl;
+    cerr << "Naredba_petlje" << endl;
 	if (produkcija.nodes.size() == 5)
 		return produkcija1(produkcija, tablica);
 	else if (produkcija.nodes.size() == 6)
@@ -21,8 +21,6 @@ povratni_tip Naredba_petlje::produkcija1(Node produkcija, Tablica_djelokruga &ta
 	Izraz arg1;
 
 	izvedbena_vrijednost1 = arg1.produkcija(produkcija.nodes[2], tablica);
-	if (!(Ekvivaletni(izvedbena_vrijednost1.tip,"int")))
-		throw form_error(produkcija);
 	loop_status = LOOP;
 	Naredba::produkcija(produkcija.nodes[4], tablica);
 	loop_status = UNDEFINED_LOOP;
@@ -38,8 +36,6 @@ povratni_tip Naredba_petlje::produkcija2(Node produkcija, Tablica_djelokruga &ta
 
 	Izraz_naredba::produkcija(produkcija.nodes[2], tablica);
 	izvedbena_vrijednost2 = Izraz_naredba::produkcija(produkcija.nodes[3], tablica);
-	if (!((Ekvivaletni(izvedbena_vrijednost2.tip, "int"))))
-		throw form_error(produkcija);
 
 	loop_status = LOOP;
 	Naredba::produkcija(produkcija.nodes[5], tablica);
@@ -60,8 +56,6 @@ povratni_tip Naredba_petlje::produkcija3(Node produkcija, Tablica_djelokruga &ta
 
 	Izraz_naredba::produkcija(produkcija.nodes[2], tablica);
 	izvedbena_vrijednost2 = Izraz_naredba::produkcija(produkcija.nodes[3], tablica);
-	if (!((Ekvivaletni(izvedbena_vrijednost2.tip, "int"))))
-		throw form_error(produkcija);
 
 	arg3.produkcija(produkcija.nodes[4], tablica);
 	loop_status = LOOP;

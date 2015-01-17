@@ -7,7 +7,7 @@
 
 povratni_tip Specifikator_tipa::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Specifikator tipa" << endl;
+    cerr << "Specifikator tipa" << endl;
 	povratni_tip xy;
 	
 	//produkcija 1
@@ -22,7 +22,6 @@ povratni_tip Specifikator_tipa::produkcija(Node produkcija, Tablica_djelokruga &
     else if(produkcija.nodes.size() == 1
          && produkcija.nodes[0].znak.substr(0, produkcija.nodes[0].znak.find(" ")) == "KR_INT")
 	   xy = Specifikator_tipa::produkcija3(produkcija.nodes[0], tablica, ntip);
-    else throw form_error(produkcija);
 
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }

@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Prijevodna_jedinica::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Prijevodna_jedinica" << endl;
+    cerr << "Prijevodna_jedinica" << endl;
 	if (produkcija.nodes.size() == 1)
 		return produkcija1(produkcija, tablica);
 	else

@@ -7,7 +7,7 @@
 
 povratni_tip Unarni_izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Unarni_izraz" << endl;
+    cerr << "Unarni_izraz" << endl;
 	povratni_tip xy;
 	
 	//produkcija 1
@@ -29,7 +29,6 @@ povratni_tip Unarni_izraz::produkcija(Node produkcija, Tablica_djelokruga &tabli
          && produkcija.nodes[0].znak == "<unarni_operator>"
          && produkcija.nodes[1].znak == "<cast_izraz>")
        xy = Unarni_izraz::produkcija4(produkcija, tablica, ntip);
-    else throw form_error(produkcija);
 
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }
@@ -52,8 +51,6 @@ povratni_tip Unarni_izraz::produkcija2(Node produkcija, Tablica_djelokruga &tabl
 	//1
 	xy = Unarni_izraz::produkcija(produkcija.nodes[1], tablica, ntip);
     //2
-    if(!(xy.l_izraz == true && (Ekvivaletni(xy.tip, "int")))) 
-       throw form_error(produkcija);
     xy.tip = "int";
     xy.l_izraz = false;
 	
@@ -67,8 +64,6 @@ povratni_tip Unarni_izraz::produkcija3(Node produkcija, Tablica_djelokruga &tabl
 	//1
 	xy = Unarni_izraz::produkcija(produkcija.nodes[1], tablica, ntip);
     //2
-	if (!(xy.l_izraz == true && (Ekvivaletni(xy.tip, "int"))))
-       throw form_error(produkcija);
     xy.tip = "int";
     xy.l_izraz = false;
     
@@ -83,8 +78,6 @@ povratni_tip Unarni_izraz::produkcija4(Node produkcija, Tablica_djelokruga &tabl
     //1
 	xy = cast_izraz.produkcija(produkcija.nodes[1], tablica, ntip);
     //2
-	if (!Ekvivaletni(xy.tip, "int"))
-       throw form_error(produkcija);
     xy.tip = "int";
     xy.l_izraz = false;
 	

@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Izraz" << endl;
+    cerr << "Izraz" << endl;
 
 	povratni_tip xy;
 	if (produkcija.nodes.size() == 1) {
@@ -26,11 +26,6 @@ povratni_tip Izraz::produkcija1(Node produkcija, Tablica_djelokruga &tablica, st
 
 	povratni_tip xy, povratna;
 	Izraz_pridruzivanja IzrazPridruzivanja;
-
-	if (produkcija.nodes[0].znak.compare("<izraz_pridruzivanja>")) {
-		greskaUmijesto("<izraz_pridruzivanja>", produkcija.nodes[0].znak);
-	}
-
 	povratna = IzrazPridruzivanja.produkcija(produkcija.nodes[0], tablica);
 
 	xy.tip = povratna.tip;
@@ -43,21 +38,8 @@ povratni_tip Izraz::produkcija2(Node produkcija, Tablica_djelokruga &tablica, st
 	povratni_tip povratna2, povratna1, xy;
 	Izraz izraz;
 	Izraz_pridruzivanja IzrazPridruzivanja;
-
-	if (produkcija.nodes[0].znak.compare("<izraz>")) {
-		greskaUmijesto("<izraz>", produkcija.nodes[0].znak);
-	}
-
+	
 	povratna1 = izraz.produkcija(produkcija.nodes[0], tablica);
-
-	if (produkcija.nodes[1].znak.compare(0, strlen("ZAREZ"), "ZAREZ")) {
-		greskaUmijesto("ZAREZ", produkcija.nodes[1].znak);
-	}
-
-	if (produkcija.nodes[2].znak.compare("<izraz_pridruzivanja>")) {
-		greskaUmijesto("<izraz_pridruzivanja>", produkcija.nodes[2].znak);
-	}
-
 	povratna2 = IzrazPridruzivanja.produkcija(produkcija.nodes[2], tablica);
 	
 	xy.tip = povratna2.tip;

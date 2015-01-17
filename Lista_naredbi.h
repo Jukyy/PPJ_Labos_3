@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Lista_naredbi::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Lista_naredbi" << endl;
+    cerr << "Lista_naredbi" << endl;
 	if (produkcija.nodes[0].znak == "<naredba>")
 		return produkcija1(produkcija, tablica);
 	else

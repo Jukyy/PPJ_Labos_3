@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Jednakosni_izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Jednakosni_izraz" << endl;
+    cerr << "Jednakosni_izraz" << endl;
 	
 	povratni_tip xy;
 
@@ -23,11 +23,7 @@ povratni_tip Jednakosni_izraz::produkcija1(Node produkcija, Tablica_djelokruga &
 
 	povratni_tip povratna, xy;
 	Odnosni_izraz OdnosniIzraz;
-
-	if (produkcija.nodes[0].znak.compare("<odnosni_izraz>")) {
-		greskaUmijesto("<odnosni_izraz>", produkcija.nodes[0].znak);
-	}
-
+	
 	povratna = OdnosniIzraz.produkcija(produkcija.nodes[0], tablica);
 	
 	xy.tip = povratna.tip;
@@ -42,33 +38,9 @@ povratni_tip Jednakosni_izraz::produkcija2(Node produkcija, Tablica_djelokruga &
 	Jednakosni_izraz JednakosniIzraz;
 	Odnosni_izraz OdnosniIzraz;
 
-	if (produkcija.nodes[0].znak.compare("<jednakosni_izraz>")) {
-		greskaUmijesto("<jednakosni_izraz>", produkcija.nodes[0].znak);
-	}
-
 	povratna1 = JednakosniIzraz.produkcija(produkcija.nodes[0], tablica);
-
-	if (produkcija.nodes[1].znak.compare(0, strlen("OP_EQ"), "OP_EQ") && produkcija.nodes[1].znak.compare(0, strlen("OP_NEQ"), "OP_NEQ")) {
-		greskaUmijesto("OP_EQ | OP_NEQ", produkcija.nodes[1].znak);
-	}
-
-
-	if (produkcija.nodes[2].znak.compare("<odnosni_izraz>")) {
-		greskaUmijesto("<odnosni_izraz>", produkcija.nodes[2].znak);
-	}
-
 	povratna2 = OdnosniIzraz.produkcija(produkcija.nodes[2], tablica);
-
-	if (povratna1.l_izraz != 1) {
-		throw form_error(produkcija);
-	}
-
-	if(!Ekvivaletni(povratna1.tip, "int")) {
-		throw form_error(produkcija);
-	}
-	if(!Ekvivaletni(povratna2.tip, "int")) {
-		throw form_error(produkcija);
-	}
+	
 	xy.tip = "int";
 	xy.l_izraz = false;
 

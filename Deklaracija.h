@@ -7,7 +7,7 @@
 
 povratni_tip Deklaracija::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Deklaracija" << endl;
+    cerr << "Deklaracija" << endl;
 	povratni_tip xy;
 	
 	//produkcija1
@@ -16,7 +16,6 @@ povratni_tip Deklaracija::produkcija(Node produkcija, Tablica_djelokruga &tablic
     && produkcija.nodes[1].znak == "<lista_init_deklaratora>"
     && produkcija.nodes[2].znak.substr(0, produkcija.nodes[2].znak.find(" ")) == "TOCKAZAREZ")
 	   xy = Deklaracija::produkcija1(produkcija, tablica, ntip);
-    else throw form_error(produkcija);
 	
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }

@@ -112,18 +112,3 @@ int BrojAcsiZnakova(std::string str) {
 	}
 	return brojac;
 }
-
-bool Ekvivaletni(std::string str1, std::string str2) { 
-	if (str1.find("niz") == 0 && str2.find("niz") == 0) {
-		str1 = skini(str1, "niz");
-		str2 = skini(str2, "niz");
-	}
-	if (str1.find("const") == 0) {
-		str1 = skini(str1, "const");
-	}
-	if (str2.find("const") == 0) {
-		str2 = skini(str2, "const");
-	}
-	return !str1.compare(str2) || (!str1.compare("char") && !str2.compare("int"));
-}
-

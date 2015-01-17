@@ -7,7 +7,7 @@
 #include "pomocne_funkcije_roko.h"
 
 povratni_tip Inicijalizator::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Inicijalizator" << endl;
+    cerr << "Inicijalizator" << endl;
 
 	povratni_tip xy;
 	if (produkcija.nodes.size() == 1) {
@@ -27,9 +27,6 @@ povratni_tip Inicijalizator::produkcija1(Node produkcija, Tablica_djelokruga &ta
 	povratni_tip xy, povratna;
 	Izraz_pridruzivanja IzrazPridruzivanja;
 
-	if (produkcija.nodes[0].znak.compare("<izraz_pridruzivanja>")) {
-		greskaUmijesto("<izraz_pridruzivanja>", produkcija.nodes[0].znak);
-	}
 	povratna = IzrazPridruzivanja.produkcija(produkcija.nodes[0], tablica);
 	
 	pair<std::string, int> rjesenje = DuljinaNiza(produkcija);
@@ -47,7 +44,8 @@ povratni_tip Inicijalizator::produkcija1(Node produkcija, Tablica_djelokruga &ta
 		}
 		xy.broj = rjesenje.second;
 	}
-	else {
+	else
+    {
 		xy.tip = povratna.tip;
 	}
 
@@ -58,19 +56,9 @@ povratni_tip Inicijalizator::produkcija2(Node produkcija, Tablica_djelokruga &ta
 	
 	povratni_tip xy, povratna;
 	Izraz_pridruzivanja IzrazPridruzivanja;
-
-	if (produkcija.nodes[0].znak.compare(0, strlen("L_VIT_ZAGRADA"), "L_VIT_ZAGRADA")) {
-		greskaUmijesto("L_VIT_ZAGRADA", produkcija.nodes[0].znak);
-	}
-	if (produkcija.nodes[1].znak.compare("<lista_izraza_pridruzivanja>")) {
-		greskaUmijesto("<lista_izraza_pridruzivanja>", produkcija.nodes[1].znak);
-	}
+	
 	povratna = IzrazPridruzivanja.produkcija(produkcija.nodes[1], tablica);
-
-	if (produkcija.nodes[2].znak.compare(0, strlen("D_VIT_ZAGRADA"), "D_VIT_ZAGRADA")) {
-		greskaUmijesto("D_VIT_ZAGRADA", produkcija.nodes[2].znak);
-	}
-
+	
 	xy.broj = povratna.broj;
 	xy.tip = povratna.tip;
 

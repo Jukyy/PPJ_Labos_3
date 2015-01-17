@@ -7,7 +7,7 @@
 
 povratni_tip Lista_parametara::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Lista_parametara" << endl;
+    cerr << "Lista_parametara" << endl;
 	povratni_tip xy;
 	
 	//produkcija 1
@@ -20,7 +20,6 @@ povratni_tip Lista_parametara::produkcija(Node produkcija, Tablica_djelokruga &t
          && produkcija.nodes[1].znak.substr(0, produkcija.nodes[1].znak.find(" ")) == "ZAREZ"
          && produkcija.nodes[2].znak == "<deklaracija_parametra>")
        xy = Lista_parametara::produkcija2(produkcija, tablica, ntip);
-    else throw form_error(produkcija);
 	
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }
@@ -53,7 +52,6 @@ povratni_tip Lista_parametara::produkcija2(Node produkcija, Tablica_djelokruga &
 	{
        rijec = temp.substr(0, temp.find(","));
        temp = temp.substr(temp.find(",")+1);
-       if(xy2.ime == rijec) throw form_error(produkcija);
     }
 	
 	xy.tip = xy.tip + "," + xy2.tip;

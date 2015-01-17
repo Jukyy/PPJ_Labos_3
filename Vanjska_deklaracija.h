@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Vanjska_deklaracija::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Vanjska_deklaracija" << endl;
+    cerr << "Vanjska_deklaracija" << endl;
 	if (produkcija.nodes[0].znak == "<definicija_funkcije>")
 		return produkcija1(produkcija, tablica);
 	else

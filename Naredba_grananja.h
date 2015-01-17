@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Naredba_grananja::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Naredba_grananja" << endl;
+    cerr << "Naredba_grananja" << endl;
 	if (produkcija.nodes.size() == 5)
 		return produkcija1(produkcija, tablica);
 	else
@@ -18,8 +18,6 @@ povratni_tip Naredba_grananja::produkcija1(Node produkcija, Tablica_djelokruga &
 	povratni_tip izvedbena_vrijednost1;
 	Izraz arg1;
 	izvedbena_vrijednost1 = arg1.produkcija(produkcija.nodes[2], tablica);
-	if (!(Ekvivaletni(izvedbena_vrijednost1.tip, "int")))
-		throw form_error(produkcija);
 
 	Naredba::produkcija(produkcija.nodes[4], tablica);
 	
@@ -33,8 +31,6 @@ povratni_tip Naredba_grananja::produkcija2(Node produkcija, Tablica_djelokruga &
 	povratni_tip izvedbena_vrijednost1;
 	Izraz arg1;
 	izvedbena_vrijednost1 = arg1.produkcija(produkcija.nodes[2], tablica);
-	if (!(Ekvivaletni(izvedbena_vrijednost1.tip, "int")))
-		throw form_error(produkcija);
 
 	Naredba::produkcija(produkcija.nodes[4], tablica);
 	Naredba::produkcija(produkcija.nodes[6], tablica);

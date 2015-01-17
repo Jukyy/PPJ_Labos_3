@@ -7,7 +7,7 @@
 
 povratni_tip Lista_deklaracija::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Lista_deklaracija" << endl;
+    cerr << "Lista_deklaracija" << endl;
 	povratni_tip xy;
 	
 	//produkcija1
@@ -19,7 +19,6 @@ povratni_tip Lista_deklaracija::produkcija(Node produkcija, Tablica_djelokruga &
          && produkcija.nodes[0].znak == "<lista_deklaracija>"
          && produkcija.nodes[1].znak == "<deklaracija>")
 	   xy = Lista_deklaracija::produkcija2(produkcija, tablica, ntip);
-    else throw form_error(produkcija);
 	
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }

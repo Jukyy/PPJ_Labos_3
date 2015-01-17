@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Postfiks_izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Postfix_izraz" << endl;
+    cerr << "Postfix_izraz" << endl;
 	if (produkcija.nodes.size() == 1) 
 		return produkcija1(produkcija, tablica);
 	else if(produkcija.nodes.size() == 2) 
@@ -19,7 +19,6 @@ povratni_tip Postfiks_izraz::produkcija(Node produkcija, Tablica_djelokruga &tab
          else 
 			 return produkcija4(produkcija, tablica);
     }
-	else throw form_error(produkcija);
 }
 
 povratni_tip Postfiks_izraz::produkcija1(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
@@ -42,10 +41,8 @@ povratni_tip Postfiks_izraz::produkcija2(Node produkcija, Tablica_djelokruga &ta
 	izvedbena_vrijednost.tip = skini(izvedbena_vrijednost.tip, "niz");
 	//izvedbena_vrijednost.tip = vrijednost1.tip.substr(4, vrijednost1.tip.length()-1);
 	izvedbena_vrijednost.l_izraz = (vrijednost1.constant == false);
-	if(vrijednost1.tip[0] != 'n') throw form_error(produkcija);	
 	Izraz izraz2; 
 	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
-	if (!Ekvivaletni(vrijednost2.tip, "int")) throw form_error(produkcija);
 	
 	return izvedbena_vrijednost;
 }
@@ -59,11 +56,10 @@ povratni_tip Postfiks_izraz::produkcija3(Node produkcija, Tablica_djelokruga &ta
     
     std::string pov;
     std::string tip = vrijednost.tip;
-    if(tip.substr(0, 15) != "funkcija(void->") throw form_error(produkcija);
-	else  {
-		pov = tip.substr(15);
-		pov = pov.substr(0, pov.find(")"));
-	}
+    
+    pov = tip.substr(15);
+	pov = pov.substr(0, pov.find(")"));
+	
     izvedbena_vrijednost.tip = pov;
     izvedbena_vrijednost.l_izraz = false;
     
@@ -123,14 +119,6 @@ povratni_tip Postfiks_izraz::produkcija4(Node produkcija, Tablica_djelokruga &ta
         if(i + 1 == params.size()) param.push_back(params.substr(last, i + 1));
     }*/
     
-    if(arg.size() != param.size()) throw form_error(produkcija);
-    
-	for (unsigned i = 0; i < arg.size(); ++i) {
-       if(arg[i] != param[i] && 
-       (arg[i] != "int" && arg[i] != "char" || param[i] != "int" && param[i] != "char")) 
-           throw form_error(produkcija);
-    }
-    
 	return izvedbena_vrijednost;
 }
 
@@ -142,8 +130,6 @@ povratni_tip Postfiks_izraz::produkcija5(Node produkcija, Tablica_djelokruga &ta
 	
 	Postfiks_izraz izraz;
 	povratni_tip vrijednost = izraz.produkcija(node, tablica);
-	if (!vrijednost.l_izraz || !Ekvivaletni(vrijednost.tip, "int"))
-        throw form_error(produkcija);
 	
 	return izvedbena_vrijednost;
 }

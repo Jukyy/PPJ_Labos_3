@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Multiplikativni_izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Multiplikativni_izraz" << endl;
+    cerr << "Multiplikativni_izraz" << endl;
 	if(produkcija.nodes.size() == 1) 
 		return produkcija1(produkcija, tablica);
 	else  
@@ -32,10 +32,8 @@ povratni_tip Multiplikativni_izraz::produkcija2(Node produkcija, Tablica_djelokr
 	
 	Multiplikativni_izraz izraz1;
 	povratni_tip vrijednost1 = izraz1.produkcija(node1, tablica);
-	if (!Ekvivaletni(vrijednost1.tip, "int")) throw form_error(produkcija);
 	Cast_izraz izraz2;
 	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
-	if(!Ekvivaletni(vrijednost2.tip, "int")) throw form_error(produkcija);
 	
 	return izvedbena_vrijednost;
 }

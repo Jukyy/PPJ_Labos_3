@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Slozena_naredba::produkcija(Node produkcija, Tablica_djelokruga &tablica, vector<Znakovi> init_znakovi){
-    //cout << "Slozena_naredba" << endl;
+    cerr << "Slozena_naredba" << endl;
 	if (produkcija.nodes.size() == 3)
 		return produkcija1(produkcija, tablica, init_znakovi);
 	else

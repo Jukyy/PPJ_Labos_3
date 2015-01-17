@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Bin_xili_izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Bin_xili_izraz" << endl;
+    cerr << "Bin_xili_izraz" << endl;
 	if (produkcija.nodes.size() == 1) return produkcija1(produkcija, tablica);
 	else return produkcija2(produkcija, tablica);
 }
@@ -30,12 +30,8 @@ povratni_tip Bin_xili_izraz::produkcija2(Node produkcija, Tablica_djelokruga &ta
 	
 	Bin_xili_izraz izraz1;
 	povratni_tip vrijednost1 = izraz1.produkcija(node1, tablica);
-	if (!Ekvivaletni(vrijednost1.tip, "int")) 
-		throw form_error(produkcija);
 	Bin_i_izraz izraz2;
 	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
-	if (!Ekvivaletni(vrijednost2.tip, "int")) 
-		throw form_error(produkcija);
 	
 	return izvedbena_vrijednost;
 }

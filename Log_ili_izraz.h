@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Log_ili_izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Log_ili_izraz" << endl;
+    cerr << "Log_ili_izraz" << endl;
 	if (produkcija.nodes.size() == 1) 
 		return produkcija1(produkcija, tablica);
 	else 
@@ -32,10 +32,8 @@ povratni_tip Log_ili_izraz::produkcija2(Node produkcija, Tablica_djelokruga &tab
 	
 	Log_ili_izraz izraz1;
 	povratni_tip vrijednost1 = izraz1.produkcija(node1, tablica);
-	if(vrijednost1.tip != "int" && vrijednost1.tip != "char") throw form_error(produkcija);
 	Log_i_izraz izraz2;
 	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
-	if(vrijednost2.tip != "int" && vrijednost2.tip != "char") throw form_error(produkcija);
 	
 	return izvedbena_vrijednost;
 }

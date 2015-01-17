@@ -6,7 +6,7 @@
 #include "produkcije.h"
 
 povratni_tip Izraz_naredba::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    //cout << "Izraz_naredba" << endl;
+    cerr << "Izraz_naredba" << endl;
 	if (produkcija.nodes.size() == 1)
 		return produkcija1(produkcija, tablica);
 	else

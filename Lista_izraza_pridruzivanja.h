@@ -7,7 +7,7 @@
 
 povratni_tip Lista_izraza_pridruzivanja::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Lista_izraza_pridruzivanja" << endl;
+    cerr << "Lista_izraza_pridruzivanja" << endl;
 	povratni_tip xy;
 	
 	//produkcija 1
@@ -20,7 +20,6 @@ povratni_tip Lista_izraza_pridruzivanja::produkcija(Node produkcija, Tablica_dje
          && produkcija.nodes[1].znak.substr(0, produkcija.nodes[1].znak.find(" ")) == "ZAREZ"
          && produkcija.nodes[2].znak == "<izraz_pridruzivanja>")
 	   xy = Lista_izraza_pridruzivanja::produkcija2(produkcija, tablica, ntip);
-    else throw form_error(produkcija);
 	
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }

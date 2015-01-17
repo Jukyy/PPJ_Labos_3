@@ -7,7 +7,7 @@
 
 povratni_tip Definicija_funkcije::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Definicija_funkcije" << endl;
+    cerr << "Definicija_funkcije" << endl;
 	povratni_tip xy;
 	
 	//produkcija1
@@ -26,7 +26,6 @@ povratni_tip Definicija_funkcije::produkcija(Node produkcija, Tablica_djelokruga
          && produkcija.nodes[4].znak.substr(0, produkcija.nodes[4].znak.find(" ")) == "D_ZAGRADA"
          && produkcija.nodes[5].znak == "<slozena_naredba>")
        xy = Definicija_funkcije::produkcija2(produkcija, tablica, ntip, produkcija.nodes[1].znak);
-    else throw form_error(produkcija);
     
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }
@@ -40,12 +39,9 @@ povratni_tip Definicija_funkcije::produkcija1(Node produkcija, Tablica_djelokrug
 	//1
 	xy = ime_tipa.produkcija(produkcija.nodes[0], tablica, ntip);
 	//2  T = int ili char
-	if(xy.tip == "const(int)" || xy.tip == "const(char)") throw form_error(produkcija);
 	//3
 	std::string IDNime = IDN.substr(IDN.find(" ")+1);
 	IDNime = IDNime.substr(IDNime.find(" ")+1);
-	for(int brojac = 0; brojac != definicije.size(); brojac++)
-	   if(definicije[brojac] == IDNime) throw form_error(produkcija);
 	//4
 	std::string IDNtip = "funkcija(void->" + xy.tip + ")";
 	bool zastavica = false;
@@ -53,7 +49,6 @@ povratni_tip Definicija_funkcije::produkcija1(Node produkcija, Tablica_djelokrug
 	{
         if(tablica.lokalne_variable[brojac].ime == IDNime)
         {
-           if(tablica.lokalne_variable[brojac].tip != IDNtip) throw form_error(produkcija);
            zastavica = true;
            break;
         }
@@ -92,12 +87,9 @@ povratni_tip Definicija_funkcije::produkcija2(Node produkcija, Tablica_djelokrug
 	//1
 	xy = ime_tipa.produkcija(produkcija.nodes[0], tablica, ntip);
 	//2  T = int ili char
-	if(xy.tip == "const(int)" || xy.tip == "const(char)") throw form_error(produkcija);
 	//3
 	std::string IDNime = IDN.substr(IDN.find(" ")+1);
 	IDNime = IDNime.substr(IDNime.find(" ")+1);
-	for(int brojac = 0; brojac != definicije.size(); brojac++)
-	   if(definicije[brojac] == IDNime) throw form_error(produkcija);
     //4
     xy2 = lista_parametara.produkcija(produkcija.nodes[3], tablica, ntip);
     //5
@@ -107,7 +99,6 @@ povratni_tip Definicija_funkcije::produkcija2(Node produkcija, Tablica_djelokrug
 	{
         if(tablica.lokalne_variable[brojac].ime == IDNime)
         {
-           if(tablica.lokalne_variable[brojac].tip != IDNtip) throw form_error(produkcija);
            zastavica = true;
            break;
         }

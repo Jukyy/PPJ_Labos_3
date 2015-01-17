@@ -7,7 +7,7 @@
 
 povratni_tip Lista_init_deklaratora::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
-    //cout << "Lista_init_deklaratora" << endl;
+    cerr << "Lista_init_deklaratora" << endl;
 	povratni_tip xy;
 	
 	//produkcija 1
@@ -20,7 +20,6 @@ povratni_tip Lista_init_deklaratora::produkcija(Node produkcija, Tablica_djelokr
          && produkcija.nodes[1].znak.substr(0, produkcija.nodes[1].znak.find(" ")) == "ZAREZ"
          && produkcija.nodes[2].znak == "<init_deklarator>")
        xy = Lista_init_deklaratora::produkcija2(produkcija, tablica, ntip);
-    else throw form_error(produkcija);
 	
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
 }
