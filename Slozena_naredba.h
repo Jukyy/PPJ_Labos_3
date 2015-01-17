@@ -26,21 +26,21 @@ povratni_tip Slozena_naredba::produkcija1(Node produkcija, Tablica_djelokruga &t
 	else
 		nova_tablica.is_loop = false;
 	nova_tablica.lokalne_variable = init_znakovi; //primaju se znakovi od funkcije (ako postoje)
-	try
-	{
-		for (unsigned i = 0; i < init_znakovi.size(); ++i)
-		{
-			string ime = init_znakovi[i].ime;
-			Registriraj_varijablu(ime);
-		}
-		
-	}
-	catch (exception e)
-	{
-		cerr << "GRESKA 16:46" << endl;
-	}
 	
-
+	
+	//LABOS4 AAAAAAAAAAAA
+	Lokalne_varijable * lok_var;
+	if(tablica.is_global)
+	   lok_var = Stvori_novu_tablicu(NULL);
+    else
+       lok_var = Stvori_novu_tablicu(tablica.lok_var);
+    nova_tablica.lok_var = lok_var;
+    //ubacivanje varijabli iz zagrada
+    int brojac;
+    for(brojac = 0; brojac != init_znakovi.size(); brojac++)
+       Registriraj_varijablu(nova_tablica.lok_var, "V_" + init_znakovi[brojac].ime);
+	
+	
 	Lista_naredbi::produkcija(produkcija.nodes[1], nova_tablica);
 	tablica.lokalne_tablice.push_back(nova_tablica);
 
@@ -63,6 +63,21 @@ povratni_tip Slozena_naredba::produkcija2(Node produkcija, Tablica_djelokruga &t
 	else
 		nova_tablica.is_loop = false;
 	nova_tablica.lokalne_variable = init_znakovi; //primaju se znakovi od funkcije (ako postoje)
+	
+	
+	//LABOS4 AAAAAAAAAAAA
+	Lokalne_varijable * lok_var;
+	if(tablica.is_global)
+	   lok_var = Stvori_novu_tablicu(NULL);
+    else
+       lok_var = Stvori_novu_tablicu(tablica.lok_var);
+    nova_tablica.lok_var = lok_var;
+    //ubacivanje varijabli iz zagrada
+    int brojac;
+    for(brojac = 0; brojac != init_znakovi.size(); brojac++)
+       Registriraj_varijablu(nova_tablica.lok_var, "V_" + init_znakovi[brojac].ime);
+	
+	
 	arg1.produkcija(produkcija.nodes[1], nova_tablica);
 	Lista_naredbi::produkcija(produkcija.nodes[2], nova_tablica);
 	tablica.lokalne_tablice.push_back(nova_tablica);
