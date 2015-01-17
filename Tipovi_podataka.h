@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "FRISC_instrukcije.h"
 
 using namespace std;
 
