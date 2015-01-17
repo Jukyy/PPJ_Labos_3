@@ -1,0 +1,150 @@
+#pragma once
+#include "Tipovi_podataka.h"
+#include "class_definitions_Izrazi.h"
+#include "class_definitions_Naredbena_struktura.h"
+#include "class_definitions_Deklaracije_i_definicije.h"
+#include "produkcije.h"
+
+povratni_tip Postfiks_izraz::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
+    //cout << "Postfix_izraz" << endl;
+	if (produkcija.nodes.size() == 1) 
+		return produkcija1(produkcija, tablica);
+	else if(produkcija.nodes.size() == 2) 
+		return produkcija5(produkcija, tablica);
+	else if(produkcija.nodes.size() == 3) 
+		return produkcija3(produkcija, tablica);
+	else if(produkcija.nodes.size() == 4) {
+         if(produkcija.nodes[2].znak[2] == 'U') 
+			 return produkcija2(produkcija, tablica);
+         else 
+			 return produkcija4(produkcija, tablica);
+    }
+	else throw form_error(produkcija);
+}
+
+povratni_tip Postfiks_izraz::produkcija1(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
+	povratni_tip izvedbena_vrijednost;
+	Node node = produkcija.nodes[0];
+	
+	Primarni_izraz izraz;
+	izvedbena_vrijednost = izraz.produkcija(node, tablica);
+	
+	return izvedbena_vrijednost;
+}
+
+povratni_tip Postfiks_izraz::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
+	povratni_tip izvedbena_vrijednost;
+	Node node1 = produkcija.nodes[0];
+	Node node2 = produkcija.nodes[2];
+	
+	Postfiks_izraz izraz1;
+	povratni_tip vrijednost1 = izraz1.produkcija(node1, tablica);
+	izvedbena_vrijednost.tip = skini(izvedbena_vrijednost.tip, "niz");
+	//izvedbena_vrijednost.tip = vrijednost1.tip.substr(4, vrijednost1.tip.length()-1);
+	izvedbena_vrijednost.l_izraz = (vrijednost1.constant == false);
+	if(vrijednost1.tip[0] != 'n') throw form_error(produkcija);	
+	Izraz izraz2; 
+	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
+	if (!Ekvivaletni(vrijednost2.tip, "int")) throw form_error(produkcija);
+	
+	return izvedbena_vrijednost;
+}
+
+povratni_tip Postfiks_izraz::produkcija3(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
+	povratni_tip izvedbena_vrijednost;
+	
+	Node node = produkcija.nodes[0];
+    Postfiks_izraz izraz;
+    povratni_tip vrijednost = izraz.produkcija(node, tablica);
+    
+    std::string pov;
+    std::string tip = vrijednost.tip;
+    if(tip.substr(0, 15) != "funkcija(void->") throw form_error(produkcija);
+	else  {
+		pov = tip.substr(15);
+		pov = pov.substr(0, pov.find(")"));
+	}
+    izvedbena_vrijednost.tip = pov;
+    izvedbena_vrijednost.l_izraz = false;
+    
+	return izvedbena_vrijednost;
+}
+
+povratni_tip Postfiks_izraz::produkcija4(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
+	povratni_tip izvedbena_vrijednost;
+    
+    Node node1 = produkcija.nodes[0];
+    Node node2 = produkcija.nodes[2];
+    Postfiks_izraz izraz;
+    povratni_tip vrijednost_izraz = izraz.produkcija(node1, tablica);
+    Lista_argumenata list_args;
+    povratni_tip vrijednost_args = list_args.produkcija(node2, tablica);
+    
+    
+    std::string tip = vrijednost_izraz.tip;
+    std::string pov, args, params;
+    vector <std::string> arg, param;
+    params = vrijednost_args.tip;
+
+	args = tip.substr(tip.find('(')+1);
+	args = args.substr(0, args.find("->"));
+
+	pov = tip.substr(tip.find('>')+1);
+	pov = pov.substr(0, pov.find(")"));
+
+    izvedbena_vrijednost.tip = pov;
+    izvedbena_vrijednost.l_izraz = false;
+    
+	while (args.find(",") != string::npos) {
+		arg.push_back(args.substr(0, args.find(",")));
+		args = args.substr(args.find(",")+1);
+	}
+	arg.push_back(args);
+
+	while (params.find(",") != string::npos) {
+		param.push_back(params.substr(0, params.find(",")));
+		params = params.substr(params.find(",") + 1);
+	}
+	param.push_back(params);
+
+	/*for (unsigned last = 0, i = 0; i < args.size(); ++i) {
+        if(param[i] == ',' ) {
+            arg.push_back(args.substr(last, i));
+            last = i + 1;
+        }
+        if(i + 1 == args.size()) arg.push_back(args.substr(last, i + 1));
+    }
+    
+	for (unsigned last = 0, i = 0; i < params.size(); ++i) {
+        if(params[i] == ',' ) {
+            param.push_back(params.substr(last, i));
+            last = i + 1;
+        }
+        if(i + 1 == params.size()) param.push_back(params.substr(last, i + 1));
+    }*/
+    
+    if(arg.size() != param.size()) throw form_error(produkcija);
+    
+	for (unsigned i = 0; i < arg.size(); ++i) {
+       if(arg[i] != param[i] && 
+       (arg[i] != "int" && arg[i] != "char" || param[i] != "int" && param[i] != "char")) 
+           throw form_error(produkcija);
+    }
+    
+	return izvedbena_vrijednost;
+}
+
+povratni_tip Postfiks_izraz::produkcija5(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
+	povratni_tip izvedbena_vrijednost;
+	izvedbena_vrijednost.tip = "int";
+	izvedbena_vrijednost.l_izraz = false;
+    Node node = produkcija.nodes[0];
+	
+	Postfiks_izraz izraz;
+	povratni_tip vrijednost = izraz.produkcija(node, tablica);
+	if (!vrijednost.l_izraz || !Ekvivaletni(vrijednost.tip, "int"))
+        throw form_error(produkcija);
+	
+	return izvedbena_vrijednost;
+}
+
