@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -108,4 +109,33 @@ void funkcijaDijeli(){
 	cout << "\tPOP R3" << endl;
 	cout << "\tPOP R2" << endl;
 	cout << "\tRET" << endl;
+}
+
+void funkcijaOstatak(){
+
+}
+
+void spremiKonstantu(std::string label, int value){
+	cout << label << endl;
+	cout << "\tDW %D " << value << endl;
+}
+
+void naredbaRet(){
+	cout << "\tRET" << endl;
+}
+
+void naredbaLoad(string dest, string src){
+	cout << "\tLOAD " << dest << ", (" << src << ")" << endl;
+}
+
+void naredbaPush(string reg){
+	cout << "\tPUSH " << reg << endl;
+}
+
+void naredbaPop(string reg){
+	cout << "\tPOP " << reg << endl;
+}
+
+void naredbaCall(string fun){
+	cout << "\tCALL " << fun << endl;
 }
