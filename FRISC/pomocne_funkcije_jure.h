@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "../Tipovi_podataka.h"
 
 using namespace std;
 
@@ -45,7 +44,7 @@ void zapisiKonstante(){
 	for (unsigned i = 0; i < konstante.size(); i++){
 		label.clear();
 		label.append("K_K_");
-		sprintf_s(num, "%d", i);
+		sprintf(num, "%d", i);
 		label.append(num);
 		FRISC::spremiKonstantu(label, atoi(konstante[i].c_str()));
 	}
