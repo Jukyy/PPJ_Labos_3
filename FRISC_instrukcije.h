@@ -121,17 +121,73 @@ public:
 		cout << label << endl;
 	}
 
+	static void ADD(std::string src1, std::string src2, std::string dest){
+		cout << "ADD " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void ADC(std::string src1, std::string src2, std::string C, std::string dest){
+		cout << "ADC " << src1 << ", " << src2 << " + " << C << ", " << dest << endl;
+	}
+
+	static void SUB(std::string src1, std::string src2, std::string dest){
+		cout << "ADD " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void SBC(std::string src1, std::string src2, std::string C, std::string dest){
+		cout << "SBC " << src1 << ", " << src2 << " + " << C << ", " << dest << endl;
+	}
+
+	static void CMP(std::string src1, std::string src2){
+		cout << "CMP " << src1 << ", " << src2 << endl;
+	}
+
+	static void AND(std::string src1, std::string src2, std::string dest){
+		cout << "AND " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void OR(std::string src1, std::string src2, std::string dest){
+		cout << "OR " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void XOR(std::string src1, std::string src2, std::string dest){
+		cout << "XOR " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void SHL(std::string src1, std::string src2, std::string dest){
+		cout << "SHL " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void SHR(std::string src1, std::string src2, std::string dest){
+		cout << "SHR " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void ASHR(std::string src1, std::string src2, std::string dest){
+		cout << "ADD " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void ROTL(std::string src1, std::string src2, std::string dest){
+		cout << "ADD " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
+	static void ROTR(std::string src1, std::string src2, std::string dest){
+		cout << "ADD " << src1 << ", " << src2 << ", " << dest << endl;
+	}
+
 	static void spremiKonstantu(std::string label, int value){
 		cout << label << endl;
 		cout << "\tDW %D " << value << endl;
 	}
 
-	static void RET(){
-		cout << "\tRET" << endl;
+	static void MOVE(std::string src, std::string dest){
+		cout << "\tMOVE " << src << ", " << dest << endl;
 	}
 
 	static void LOAD(std::string dest, std::string src){
 		cout << "\tLOAD " << dest << ", (" << src << ")" << endl;
+	}
+
+	static void STORE(std::string dest, std::string src){
+		cout << "\tSTORE " << dest << ", (" << src << ")" << endl;
 	}
 
 	static void PUSH(std::string reg){
@@ -142,8 +198,23 @@ public:
 		cout << "\tPOP " << reg << endl;
 	}
 
+	static void JP(std::string condition, string adr){
+		cout << "JP_" << condition << " " << adr << endl;
+	}
+	static void JP(string adr){
+		cout << "JP " << adr << endl;
+	}
+
 	static void CALL(std::string fun){
 		cout << "\tCALL " << fun << endl;
+	}
+
+	static void RET(){
+		cout << "\tRET" << endl;
+	}
+
+	static void HALT(){
+		cout << "\tHALT" << endl;
 	}
 
 };
