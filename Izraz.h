@@ -28,9 +28,7 @@ povratni_tip Izraz::produkcija1(Node produkcija, Tablica_djelokruga &tablica, st
 	Izraz_pridruzivanja IzrazPridruzivanja;
 	povratna = IzrazPridruzivanja.produkcija(produkcija.nodes[0], tablica);
 
-	xy.tip = povratna.tip;
-	xy.l_izraz = povratna.l_izraz;
-	return xy;
+	return povratna;
 }
 
 povratni_tip Izraz::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
@@ -42,8 +40,7 @@ povratni_tip Izraz::produkcija2(Node produkcija, Tablica_djelokruga &tablica, st
 	povratna1 = izraz.produkcija(produkcija.nodes[0], tablica);
 	povratna2 = IzrazPridruzivanja.produkcija(produkcija.nodes[2], tablica);
 	
-	xy.tip = povratna2.tip;
-	xy.l_izraz = 0;
+	povratna2.l_izraz = 0;
 
-	return xy;
+	return povratna2;
 }

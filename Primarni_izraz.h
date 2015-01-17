@@ -57,6 +57,9 @@ povratni_tip Primarni_izraz::produkcija1(Node produkcija, Tablica_djelokruga &ta
         }
         t = (*t).ugnijezdena_tablica;
     }
+    
+    //LABOS 4 dodavanje imena varijable ako je IDN
+    izvedbena_vrijednost.ime_varijable = "V_" + ime;
 
 	return izvedbena_vrijednost;
 }
@@ -68,6 +71,10 @@ povratni_tip Primarni_izraz::produkcija2(Node produkcija, Tablica_djelokruga &ta
     	
 	Node node = produkcija.nodes[0];
 	string znak = vratiTrecistring(node.znak);
+	
+	//LABOS 4
+	Stvori_novu_labelu("K_K", znak);
+	izvedbena_vrijednost.ime_varijable = Vrati_labelu("K_K");
 
 	return izvedbena_vrijednost;
 }
@@ -78,10 +85,12 @@ povratni_tip Primarni_izraz::produkcija3(Node produkcija, Tablica_djelokruga &ta
 	izvedbena_vrijednost.l_izraz = false;
     
     Node node = produkcija.nodes[0];
-    std::string znak = node.znak;
-	for (unsigned i = 0; i < node.znak.length(); ++i) {
-        if(node.znak[i] == ' ') znak = node.znak.substr(i+1); 
-    }
+	string znak = vratiTrecistring(node.znak);
+	
+	//LABOS 4
+	znak = string_to_int(znak);
+	Stvori_novu_labelu("K_K", znak);
+	izvedbena_vrijednost.ime_varijable = Vrati_labelu("K_K");
     
 	return izvedbena_vrijednost;
 }

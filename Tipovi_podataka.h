@@ -2,6 +2,10 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "FRISC/FRISC_instrukcije.h"
+#include "FRISC/Varijable.h"
+#include "FRISC/Labeliranje.h"
+#include "FRISC/pomocne_funkcije_jure.h"
 
 using namespace std;
 
@@ -34,10 +38,12 @@ typedef struct _Tablica_djelokruga{
 	bool is_loop;
 	bool from_function;
 	vector<Znakovi> lokalne_variable;
+	Lokalne_varijable * lok_var;
 } Tablica_djelokruga;
 
 typedef struct _povratni_tip{
 	std::string ime;
+	std::string ime_varijable;
 	std::string tip;
 	bool l_izraz;
 	int broj;
