@@ -44,7 +44,7 @@ void Stvori_novu_labelu(string labela, string vrijednost)
 string Vrati_labelu(string labela)
 {
    char nesto[50];
-   sprintf(nesto, "%d\0", labele[labela]);
+   sprintf_s(nesto, "%d\0", labele[labela]);
    string ret(nesto);
    ret = labela + "_" + ret;
    
