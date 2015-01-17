@@ -19,13 +19,6 @@ void Stvori_novu_labelu(string labela)
    return;
 }
 
-//funkcija koja samo ispisuje zadnju napravljenu labelu tog tipa
-//koristimo za petlje npr i kod ispisa globalnih varijabli na kraju
-void Labeliraj(string labela)
-{
-   cout << labela << "_" << labele[labela] << endl;
-   return;
-}
 
 //formatiraj zadnje dodanu labelu nekog tipa u string
 string Vrati_labelu(string labela)

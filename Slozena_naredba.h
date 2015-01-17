@@ -26,6 +26,21 @@ povratni_tip Slozena_naredba::produkcija1(Node produkcija, Tablica_djelokruga &t
 	else
 		nova_tablica.is_loop = false;
 	nova_tablica.lokalne_variable = init_znakovi; //primaju se znakovi od funkcije (ako postoje)
+	try
+	{
+		for (unsigned i = 0; i < init_znakovi.size(); ++i)
+		{
+			string ime = init_znakovi[i].ime;
+			Registriraj_varijablu(ime);
+		}
+		
+	}
+	catch (exception e)
+	{
+		cerr << "GRESKA 16:46" << endl;
+	}
+	
+
 	Lista_naredbi::produkcija(produkcija.nodes[1], nova_tablica);
 	tablica.lokalne_tablice.push_back(nova_tablica);
 
