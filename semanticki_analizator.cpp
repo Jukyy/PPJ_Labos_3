@@ -63,35 +63,17 @@ Node read_input(){
 	return head;
 }
 
-int ProvjeriDeklaracijeUTablici(_Tablica_djelokruga globalna) {
-
-	for (unsigned i = 0; i < globalna.lokalne_variable.size(); ++i) {
-		string ime = globalna.lokalne_variable[i].ime;
-		if (globalna.lokalne_variable[i].tip.find("->") != string::npos) {
-			string ime_funkcije = ime.substr(0, ime.find("("));
-			if (PronadiUVektoru(definicije, ime_funkcije) == -1) {
-				cout << "funkcija" << endl;
-				return 1; // return 1 treba prekinuti trazenje
-			}
-		}
-	}
-	for (unsigned i = 0; i < globalna.lokalne_tablice.size(); ++i) {
-		if (ProvjeriDeklaracijeUTablici(globalna.lokalne_tablice[i])){
-			return 1;
-		}
-	}
-	return 0; // nije pronasao gresku
-}
-
-int main(){
+int main()
+{
 	Node head;
 	head = read_input();
 	Tablica_djelokruga globalna;
 	globalna.is_global = true;
 	globalna.ugnijezdena_tablica = NULL;
 
-	try{
-        pocetneInstrukcije();
+	try
+    {
+        FRISC::pocetneInstrukcije();
         
 		Prijevodna_jedinica::produkcija(head, globalna);
 
@@ -99,7 +81,8 @@ int main(){
 		//if(man==false && funkcija==false) //cout<<"main"<<endl;
 		//else if(postoji_nedefinirana_funkcija) //cout<<"funkcija"<<endl;
 	}
-	catch (std::string err){
+	catch (std::string err)
+    {
 		cout << err << endl;
 
 		//BITNO:

@@ -75,7 +75,10 @@ povratni_tip Definicija_funkcije::produkcija1(Node produkcija, Tablica_djelokrug
 	
 	//LABOS 4 - dodavanje labele funkcije
 	Stvori_novu_labelu("F_" + IDNime);
-	cout << Vrati_labelu("F_" + IDNime);
+	cout << Vrati_labelu("F_" + IDNime) << endl;
+	//spremanje konteksta
+	if(IDNime != "main")
+	   FRISC::spremiKontekst();
 	
 	
 	xy = Slozena_naredba::produkcija(produkcija.nodes[5], tablica, lokalne_variable);
@@ -158,6 +161,10 @@ povratni_tip Definicija_funkcije::produkcija2(Node produkcija, Tablica_djelokrug
     
 	//LABOS 4 - dodavanje labele funkcije
 	Stvori_novu_labelu("F_" + IDNime);
+	cout << Vrati_labelu("F_" + IDNime) << endl;
+	//spremanje konteksta
+	if(IDNime != "main")
+	   FRISC::spremiKontekst();
     
     
 	xy = Slozena_naredba::produkcija(produkcija.nodes[5], tablica, lokalne_variable);

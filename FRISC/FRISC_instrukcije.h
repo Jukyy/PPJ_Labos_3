@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Labeliranje.h"
 
 using namespace std;
 
@@ -8,8 +9,10 @@ class FRISC{
 public:
 	static void pocetneInstrukcije(){
 		cout << "\tMOVE 40000, R7" << endl;
-		cout << "\tCALL F_MAIN" << endl;
-		cout << "\tHALT" << endl;
+    	cout << "\tCALL ";
+        Stvori_novu_labelu("F_main");
+        cout << Vrati_labelu("F_main") << endl;
+    	cout << "\tHALT" << endl;
 	}
 
 	static void spremiKontekst(){

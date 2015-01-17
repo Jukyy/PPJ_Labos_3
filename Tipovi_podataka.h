@@ -2,9 +2,10 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "FRISC_instrukcije.h"
+#include "FRISC/FRISC_instrukcije.h"
 #include "FRISC/Varijable.h"
 #include "FRISC/Labeliranje.h"
+#include "FRISC/pomocne_funkcije_jure.h"
 
 using namespace std;
 

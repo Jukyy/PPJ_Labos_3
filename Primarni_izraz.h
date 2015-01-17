@@ -88,9 +88,9 @@ povratni_tip Primarni_izraz::produkcija3(Node produkcija, Tablica_djelokruga &ta
 	string znak = vratiTrecistring(node.znak);
 	
 	//LABOS 4
+	znak = string_to_int(znak);
 	Stvori_novu_labelu("K_K", znak);
 	izvedbena_vrijednost.ime_varijable = Vrati_labelu("K_K");
-	//OVDJE JURE NASTUPA;
     
 	return izvedbena_vrijednost;
 }
