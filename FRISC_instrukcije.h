@@ -22,12 +22,12 @@ public:
 	}
 
 	static void vratiKontekst(){
-		cout << "\tPUSH R5" << endl;
-		cout << "\tPUSH R4" << endl;
-		cout << "\tPUSH R3" << endl;
-		cout << "\tPUSH R2" << endl;
-		cout << "\tPUSH R1" << endl;
-		cout << "\tPUSH R0" << endl;
+		cout << "\tPOP R5" << endl;
+		cout << "\tPOP R4" << endl;
+		cout << "\tPOP R3" << endl;
+		cout << "\tPOP R2" << endl;
+		cout << "\tPOP R1" << endl;
+		cout << "\tPOP R0" << endl;
 	}
 
 	static void funkcijaMnozi(){
