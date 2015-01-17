@@ -2,3 +2,9 @@
 	CALL F_main_1
 	HALT
 F_main_1
+	LOAD R6, ()
+	RET
+	LOAD R6, ()
+	RET
+	LOAD R6, ()
+	RET

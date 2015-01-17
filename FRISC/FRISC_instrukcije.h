@@ -189,8 +189,8 @@ public:
 		cout << "\tLOAD " << dest << ", (" << src << ")" << endl;
 	}
 
-	static void STORE(std::string dest, std::string src){
-		cout << "\tSTORE " << dest << ", (" << src << ")" << endl;
+	static void STORE(std::string src, std::string dest){
+		cout << "\tSTORE " << src << ", (" << dest << ")" << endl;
 	}
 
 	static void PUSH(std::string reg){

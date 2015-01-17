@@ -63,6 +63,10 @@ povratni_tip Naredba_skoka::produkcija4(Node produkcija, Tablica_djelokruga &tab
 	Tablica_djelokruga nova_tablica = tablica;
 
 	izvedbena_vrijednost1 = arg1.produkcija(produkcija.nodes[1], tablica);
+	
+	//LABOS 4 kod za return
+	FRISC::LOAD("R6", izvedbena_vrijednost1.ime_varijable);
+	FRISC::RET();
 
 	while (true){
 		for (unsigned i = 0; i < nova_tablica.lokalne_variable.size(); i++){

@@ -35,5 +35,8 @@ povratni_tip Aditivni_izraz::produkcija2(Node produkcija, Tablica_djelokruga &ta
 	Multiplikativni_izraz izraz2;
 	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
 	
+	//LABOS 4
+	izvedbena_vrijednost.ime_varijable = vrijednost2.ime_varijable;
+	
 	return izvedbena_vrijednost;
 }
