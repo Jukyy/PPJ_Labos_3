@@ -10,7 +10,7 @@
 #include "produkcije.h"
 
 using namespace std;
-
+//test
 Node parse_input(vector<std::string> lines){
 	Node node;
 	vector<std::string> pom;
