@@ -1,35 +1,37 @@
 #pragma once
-#include "Tipovi_podataka.h"
-#include "class_definitions_Izrazi.h"
-#include "class_definitions_Naredbena_struktura.h"
-#include "class_definitions_Deklaracije_i_definicije.h"
-#include "produkcije.h"
+#include <map>
+#include <string.h>
+//<>
 
-povratni_tip Vanjska_deklaracija::produkcija(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-    cerr << "Vanjska_deklaracija" << endl;
-	if (produkcija.nodes[0].znak == "<definicija_funkcije>")
-		return produkcija1(produkcija, tablica);
-	else
-		return produkcija2(produkcija, tablica);
+map <string, int> labele;
+
+//napravi novi tip labele
+void Stvori_novu_labelu(string labela)
+{
+   //ako nije u listi labela
+   if(labele.find(labela) == labele.end())
+      labele[labela] = 1;
+   else
+      labele[labela]++;
+   
+   return;
 }
 
-povratni_tip Vanjska_deklaracija::produkcija1(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-	povratni_tip izvedbena_vrijednost;
-	Definicija_funkcije arg1;
-
-	arg1.produkcija(produkcija.nodes[0], tablica);
-
-	//može se vratiti prazna izvedbena_vrijednost jer
-	//produkcija ništa nevraèa
-	return izvedbena_vrijednost;
+//funkcija koja samo ispisuje zadnju napravljenu labelu tog tipa
+//koristimo za petlje npr i kod ispisa globalnih varijabli na kraju
+void Labeliraj(string labela)
+{
+   cout << labela << "_" << labele[labela] << endl;
+   return;
 }
 
-povratni_tip Vanjska_deklaracija::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-	povratni_tip izvedbena_vrijednost;
-	Deklaracija arg1;
-	arg1.produkcija(produkcija.nodes[0], tablica);
-
-	//može se vratiti prazna izvedbena_vrijednost jer
-	//produkcija ništa nevraèa
-	return izvedbena_vrijednost;
+//formatiraj zadnje dodanu labelu nekog tipa u string
+string Vrati_labelu(string labela)
+{
+   char nesto[50];
+   sprintf(nesto, "%d\0", labele[labela]);
+   string ret(nesto);
+   ret = labela + "_" + ret;
+   
+   return ret;
 }
