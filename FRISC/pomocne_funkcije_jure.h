@@ -44,7 +44,7 @@ void zapisiKonstante(){
 	for (unsigned i = 0; i < konstante.size(); i++){
 		label.clear();
 		label.append("K_K_");
-		sprintf(num, "%d", i);
+		sprintf(num, "%d", i+1);
 		label.append(num);
 		FRISC::spremiKonstantu(label, atoi(konstante[i].c_str()));
 	}

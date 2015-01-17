@@ -2,17 +2,7 @@
 	CALL F_main_1
 	HALT
 F_main_1
-	LOAD R6, ()
+	LOAD R6, (K_K_1)
 	RET
-	LOAD R6, ()
-	RET
-	LOAD R6, ()
-	RET
-K_K_0
-	DW %D 1
 K_K_1
-	DW %D 0
-K_K_2
-	DW %D 3
-K_K_3
-	DW %D 5
+	DW %D 31

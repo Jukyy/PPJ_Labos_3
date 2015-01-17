@@ -32,5 +32,8 @@ povratni_tip Cast_izraz::produkcija2(Node produkcija, Tablica_djelokruga &tablic
     povratni_tip vrijednost2 = izraz.produkcija(node2, tablica);
 	izvedbena_vrijednost.l_izraz = false;
 	
+	//LABOS 4 prosljedjivanje imena_varijable
+	izvedbena_vrijednost.ime_varijable = vrijednost2.ime_varijable;
+	
 	return izvedbena_vrijednost;
 }

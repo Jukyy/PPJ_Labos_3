@@ -34,6 +34,9 @@ povratni_tip Izraz_pridruzivanja::produkcija1(Node produkcija, Tablica_djelokrug
 	
 	xy.tip = povratna.tip;
 	xy.l_izraz = povratna.l_izraz;
+	
+	//LABOS 4 prosljedjivanje imena_varijable
+	xy.ime_varijable = povratna.ime_varijable;
 
 	return xy;
 }

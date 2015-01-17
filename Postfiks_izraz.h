@@ -44,6 +44,10 @@ povratni_tip Postfiks_izraz::produkcija2(Node produkcija, Tablica_djelokruga &ta
 	Izraz izraz2; 
 	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
 	
+	//LABOS 4 prosljedjivanje imena_varijable
+	//OVO TREBA POPRAVITI
+	izvedbena_vrijednost.ime_varijable = vrijednost1.ime_varijable;
+	
 	return izvedbena_vrijednost;
 }
 
@@ -62,6 +66,9 @@ povratni_tip Postfiks_izraz::produkcija3(Node produkcija, Tablica_djelokruga &ta
 	
     izvedbena_vrijednost.tip = pov;
     izvedbena_vrijednost.l_izraz = false;
+    
+	//LABOS 4 prosljedjivanje imena_varijable
+	izvedbena_vrijednost.ime_varijable = vrijednost.ime_varijable;
     
 	return izvedbena_vrijednost;
 }
@@ -119,6 +126,9 @@ povratni_tip Postfiks_izraz::produkcija4(Node produkcija, Tablica_djelokruga &ta
         if(i + 1 == params.size()) param.push_back(params.substr(last, i + 1));
     }*/
     
+	//LABOS 4 prosljedjivanje imena_varijable
+	izvedbena_vrijednost.ime_varijable = vrijednost_izraz.ime_varijable;
+    
 	return izvedbena_vrijednost;
 }
 
@@ -130,6 +140,9 @@ povratni_tip Postfiks_izraz::produkcija5(Node produkcija, Tablica_djelokruga &ta
 	
 	Postfiks_izraz izraz;
 	povratni_tip vrijednost = izraz.produkcija(node, tablica);
+	
+	//LABOS 4 prosljedjivanje imena_varijable
+	izvedbena_vrijednost.ime_varijable = vrijednost.ime_varijable;
 	
 	return izvedbena_vrijednost;
 }
