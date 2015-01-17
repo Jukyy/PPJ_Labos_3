@@ -1,0 +1,4 @@
+	MOVE 40000, R7
+	CALL F_main_1
+	HALT
+F_main_1

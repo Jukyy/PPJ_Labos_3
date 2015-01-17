@@ -8,8 +8,6 @@
 #include "class_definitions_Naredbena_struktura.h"
 #include "class_definitions_Deklaracije_i_definicije.h"
 #include "produkcije.h"
-#include "FRISC/Labeliranje.h"
-#include "FRISC/Varijable.h"
 
 using namespace std;
 
@@ -93,21 +91,9 @@ int main(){
 	globalna.ugnijezdena_tablica = NULL;
 
 	try{
+        pocetneInstrukcije();
+        
 		Prijevodna_jedinica::produkcija(head, globalna);
-
-		int flag = 0;
-		for (unsigned i = 0; i < globalna.lokalne_variable.size(); ++i) {
-			if (globalna.lokalne_variable[i].ime == "main" && 
-				globalna.lokalne_variable[i].tip == "funkcija(void->int)") {
-				flag = 1;
-				break;
-			}
-		}
-
-		if (flag == 0) 
-			cout << "main" << endl;
-		else 
-			ProvjeriDeklaracijeUTablici(globalna);
 
 		//Ovdje se može upisati kod za provjeru nakon obilaska
 		//if(man==false && funkcija==false) //cout<<"main"<<endl;

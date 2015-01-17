@@ -3,6 +3,8 @@
 #include <vector>
 #include <iostream>
 #include "FRISC_instrukcije.h"
+#include "FRISC/Varijable.h"
+#include "FRISC/Labeliranje.h"
 
 using namespace std;
 
@@ -35,6 +37,7 @@ typedef struct _Tablica_djelokruga{
 	bool is_loop;
 	bool from_function;
 	vector<Znakovi> lokalne_variable;
+	Lokalne_varijable * lok_var;
 } Tablica_djelokruga;
 
 typedef struct _povratni_tip{

@@ -47,6 +47,9 @@ povratni_tip Izravni_deklarator::produkcija1(Node produkcija, Tablica_djelokruga
 	znak.tip = xy.tip;
 
 	tablica.lokalne_variable.push_back(znak);
+	
+	//LABOS 4 stavljamo varijable u tablice
+	Registriraj_varijablu(tablica.lok_var, "V_" + znak.ime);
 
 	return xy;
 }
@@ -70,6 +73,9 @@ povratni_tip Izravni_deklarator::produkcija2(Node produkcija, Tablica_djelokruga
 	znak.tip = xy.tip;
 
 	tablica.lokalne_variable.push_back(znak);
+	
+	//LABOS 4 stavljamo varijable u tablice
+	Registriraj_varijablu(tablica.lok_var, "V_" + znak.ime);
 
 	return xy;
 }
@@ -87,6 +93,9 @@ povratni_tip Izravni_deklarator::produkcija3(Node produkcija, Tablica_djelokruga
 	znak.tip = xy.tip;
 
 	tablica.lokalne_variable.push_back(znak);
+	
+	//LABOS 4 stavljamo varijable u tablice
+	Registriraj_varijablu(tablica.lok_var, "V_" + znak.ime);
 
 	return xy;
 }
@@ -107,6 +116,9 @@ povratni_tip Izravni_deklarator::produkcija4(Node produkcija, Tablica_djelokruga
 	znak.tip = xy.tip;
 
 	tablica.lokalne_variable.push_back(znak);
+	
+	//LABOS 4 stavljamo varijable u tablice
+	Registriraj_varijablu(tablica.lok_var, "V_" + znak.ime);
 
 	return xy;
 }

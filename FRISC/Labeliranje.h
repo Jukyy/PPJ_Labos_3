@@ -2,12 +2,22 @@
 #include <map>
 #include <string.h>
 //<>
+using namespace std;
 
 map <string, int> labele;
+vector <string> konstante;
 
 //napravi novi tip labele
 void Stvori_novu_labelu(string labela)
 {
+   //ako je labela funkcije onda se ponasaj na drugi nacin
+   //samo jednom se moze deklarirat i nikad vise
+   if(labela[0] == 'F')
+   {
+      if(labele.find(labela) == labele.end())
+         labele[labela] = 1;
+      return;
+   }
    //ako nije u listi labela
    if(labele.find(labela) == labele.end())
       labele[labela] = 1;
@@ -16,12 +26,17 @@ void Stvori_novu_labelu(string labela)
    
    return;
 }
-
-//funkcija koja samo ispisuje zadnju napravljenu labelu tog tipa
-//koristimo za petlje npr i kod ispisa globalnih varijabli na kraju
-void Labeliraj(string labela)
+void Stvori_novu_labelu(string labela, string vrijednost)
 {
-   cout << labela << "_" << labele[labela] << endl;
+   //ako nije u listi labela
+   if(labele.find(labela) == labele.end())
+      labele[labela] = 1;
+   else
+      labele[labela]++;
+   //ako je labela == K_K zapamti vrijednost u vektoru konstanti
+   if(labela == "K_K")
+      konstante.push_back(vrijednost);
+   
    return;
 }
 

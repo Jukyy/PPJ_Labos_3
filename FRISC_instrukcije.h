@@ -1,11 +1,14 @@
 #pragma once
 #include <iostream>
+#include "FRISC/Labeliranje.h"
 
 using namespace std;
 
 void pocetneInstrukcije(){
 	cout << "\tMOVE 40000, R7" << endl;
-	cout << "\tCALL F_MAIN" << endl;
+	cout << "\tCALL ";
+    Stvori_novu_labelu("F_main");
+    cout << Vrati_labelu("F_main") << endl;
 	cout << "\tHALT" << endl;
 }
 
