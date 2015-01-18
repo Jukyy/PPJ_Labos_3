@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include "Labeliranje.h"
+#include "Varijable.h"
 
 using namespace std;
 
@@ -35,10 +36,12 @@ public:
 
 	static void funkcijaMnozi(){
 		cout << "MULT" << endl;
-		cout << "\tLOAD R0, (R7 + 8)" << endl;
-		cout << "\tLOAD R1, (R7 + 4)" << endl;
+		cout << "\tPUSH R0" << endl;
+		cout << "\tPUSH R1" << endl;
 		cout << "\tPUSH R2" << endl;
 		cout << "\tPUSH R3" << endl;
+		cout << "\tLOAD R0, (R7 + 14)" << endl;
+		cout << "\tLOAD R1, (R7 + 18)" << endl;
 		cout << "\tAND R3, 0, R3" << endl;
 		cout << "\tAND R2, 0, R2" << endl;
 
@@ -74,15 +77,19 @@ public:
 		cout << "\tMOVE R0, R6" << endl;
 		cout << "\tPOP R3" << endl;
 		cout << "\tPOP R2" << endl;
+		cout << "\tPOP R1" << endl;
+		cout << "\tPOP R0" << endl;
 		cout << "\tRET" << endl;
 	}
 
 	static void funkcijaDijeli(){
 		cout << "DIV" << endl;
-		cout << "\tLOAD R0, (R7 + 8)" << endl;
-		cout << "\tLOAD R1, (R7 + 4)" << endl;
+		cout << "\tPUSH R0" << endl;
+		cout << "\tPUSH R1" << endl;
 		cout << "\tPUSH R2" << endl;
 		cout << "\tPUSH R3" << endl;
+		cout << "\tLOAD R0, (R7 + 14)" << endl;
+		cout << "\tLOAD R1, (R7 + 18)" << endl;
 		cout << "\tAND R2, 0, R2" << endl;
 		cout << "\tAND R3, 0, R3" << endl;
 
@@ -113,6 +120,8 @@ public:
 		cout << "\tMOVE R2, R6" << endl;
 		cout << "\tPOP R3" << endl;
 		cout << "\tPOP R2" << endl;
+		cout << "\tPOP R1" << endl;
+		cout << "\tPOP R0" << endl;
 		cout << "\tRET" << endl;
 	}
 
@@ -133,7 +142,7 @@ public:
 	}
 
 	static void SUB(std::string src1, std::string src2, std::string dest){
-		cout << "\tADD " << src1 << ", " << src2 << ", " << dest << endl;
+		cout << "\tSUB " << src1 << ", " << src2 << ", " << dest << endl;
 	}
 
 	static void SBC(std::string src1, std::string src2, std::string C, std::string dest){
@@ -165,15 +174,15 @@ public:
 	}
 
 	static void ASHR(std::string src1, std::string src2, std::string dest){
-		cout << "\tADD " << src1 << ", " << src2 << ", " << dest << endl;
+		cout << "\tASHR " << src1 << ", " << src2 << ", " << dest << endl;
 	}
 
 	static void ROTL(std::string src1, std::string src2, std::string dest){
-		cout << "\tADD " << src1 << ", " << src2 << ", " << dest << endl;
+		cout << "\tROTL " << src1 << ", " << src2 << ", " << dest << endl;
 	}
 
 	static void ROTR(std::string src1, std::string src2, std::string dest){
-		cout << "\tADD " << src1 << ", " << src2 << ", " << dest << endl;
+		cout << "\tROTR " << src1 << ", " << src2 << ", " << dest << endl;
 	}
 
 	static void spremiKonstantu(std::string label, int value){
@@ -185,12 +194,46 @@ public:
 		cout << "\tMOVE " << src << ", " << dest << endl;
 	}
 
-	static void LOAD(std::string dest, std::string src){
+	static void LOAD2(std::string dest, std::string src){
 		cout << "\tLOAD " << dest << ", (" << src << ")" << endl;
 	}
+	
+	static void LOAD(std::string dest, std::string src, Lokalne_varijable * tablica){
+        //ako je globalno ponasaj se normalno
+        if(src[0] != 'V')
+        {
+           LOAD2(dest, src);
+        }
+        //ako je lokalno idu problemi
+        else
+        {
+           int offset = Pronadji_offset_varijable(tablica, src);
+           char nesto[50];
+           sprintf(nesto, "0%X", offset);
+           string offset_string(nesto);
+           LOAD2(dest, "R7 + " + offset_string);
+        }
+    }
 
-	static void STORE(std::string src, std::string dest){
+	static void STORE2(std::string src, std::string dest){
 		cout << "\tSTORE " << src << ", (" << dest << ")" << endl;
+	}
+	
+	static void STORE(std::string src, std::string dest, Lokalne_varijable * tablica){
+        //ako je globalno ponasaj se normalno
+        if(dest[0] != 'V')
+        {
+           STORE2(src, dest);
+        }
+        //ako je lokalno idu problemi
+        else
+        {
+           int offset = Pronadji_offset_varijable(tablica, dest);
+           char nesto[50];
+           sprintf(nesto, "0%X", offset);
+           string offset_string(nesto);
+           STORE2(src, "R7 + " + offset_string);
+        }
 	}
 
 	static void PUSH(std::string reg){
@@ -204,6 +247,7 @@ public:
 	static void JP(std::string condition, string adr){
 		cout << "\tJP_" << condition << " " << adr << endl;
 	}
+	
 	static void JP(string adr){
 		cout << "\tJP " << adr << endl;
 	}
@@ -219,5 +263,29 @@ public:
 	static void HALT(){
 		cout << "\tHALT" << endl;
 	}
-
+	
+	static void MULT(std::string src1, std::string src2, std::string dest){
+        PUSH(src1);
+        PUSH(src2);
+        CALL("MULT");
+        ADD("R7", "%D 8", "R7");
+        MOVE("R6", dest);
+    }
+    
+	static void DIV(std::string src1, std::string src2, std::string dest){
+        PUSH(src1);
+        PUSH(src2);
+        CALL("DIV");
+        ADD("R7", "%D 8", "R7");
+        MOVE("R6", dest);
+    }
+    
+	static void MOD(std::string src1, std::string src2, std::string dest){
+        PUSH(src1);
+        PUSH(src2);
+        CALL("MOD");
+        ADD("R7", "%D 8", "R7");
+        MOVE("R6", dest);
+    }
+    
 };

@@ -39,7 +39,7 @@ povratni_tip Primarni_izraz::produkcija1(Node produkcija, Tablica_djelokruga &ta
     std::string ime = node.znak;
     for(unsigned i = 0; i < node.znak.length(); ++i)
     {
-        if(node.znak[i] == ' ') ime = node.znak.substr(i+1); 
+        if(node.znak[i] == ' ') ime = node.znak.substr(i+1);
     }
 	bool found = false;
     Tablica_djelokruga *t = &tablica;
@@ -63,7 +63,7 @@ povratni_tip Primarni_izraz::produkcija1(Node produkcija, Tablica_djelokruga &ta
        izvedbena_vrijednost.ime_varijable = "G_" + ime;
     else
     {
-       if(Pronadji_offset_varijable(tablica.lok_var, ime) == -1)
+       if(Pronadji_offset_varijable(tablica.lok_var, "V_" + ime) == -1)
           izvedbena_vrijednost.ime_varijable = "G_" + ime;
        else
           izvedbena_vrijednost.ime_varijable = "V_" + ime;
@@ -96,7 +96,11 @@ povratni_tip Primarni_izraz::produkcija3(Node produkcija, Tablica_djelokruga &ta
 	string znak = vratiTrecistring(node.znak);
 	
 	//LABOS 4
-	znak = string_to_int(znak);
+    int broj = string_to_int(znak);
+	char nesto[50];
+	sprintf(nesto, "%d\0", broj);
+	string temp(nesto);
+	znak = temp;
 	Stvori_novu_labelu("K_K", znak);
 	izvedbena_vrijednost.ime_varijable = Vrati_labelu("K_K");
     

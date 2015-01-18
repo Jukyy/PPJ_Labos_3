@@ -74,6 +74,9 @@ int main()
 	try
     {
         FRISC::pocetneInstrukcije();
+        FRISC::funkcijaMnozi();
+        FRISC::funkcijaDijeli();
+        FRISC::funkcijaOstatak();
         
         Stvori_novu_labelu("TEMP", "0");
         

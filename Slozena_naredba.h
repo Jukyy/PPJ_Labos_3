@@ -39,11 +39,19 @@ povratni_tip Slozena_naredba::produkcija1(Node produkcija, Tablica_djelokruga &t
     int brojac;
     for(brojac = 0; brojac != init_znakovi.size(); brojac++)
        Registriraj_varijablu(nova_tablica.lok_var, "V_" + init_znakovi[brojac].ime);
-	
-	
+    nova_tablica.lok_var->broj_varijabli_u_zagradama = init_znakovi.size();
+    //pomicanje varijabli zbog konteksta i ret
+    Pomakni_varijable(nova_tablica.lok_var, 7*4);
+       
+    
 	Lista_naredbi::produkcija(produkcija.nodes[1], nova_tablica);
 	tablica.lokalne_tablice.push_back(nova_tablica);
-cerr << "ASDFDASSGSDFGDSGSADSFSAD" << endl;
+	
+	
+	//micanje stoga unazat
+	for(int brojac = 0; brojac != nova_tablica.lok_var->varijable.size()-nova_tablica.lok_var->broj_varijabli_u_zagradama; brojac++)
+	   FRISC::ADD("R7", "4", "R7");
+	   
 
 	//može se vratiti prazna izvedbena_vrijednost jer
 	//produkcija ništa nevraèa
@@ -77,12 +85,20 @@ povratni_tip Slozena_naredba::produkcija2(Node produkcija, Tablica_djelokruga &t
     int brojac;
     for(brojac = 0; brojac != init_znakovi.size(); brojac++)
        Registriraj_varijablu(nova_tablica.lok_var, "V_" + init_znakovi[brojac].ime);
+    nova_tablica.lok_var->broj_varijabli_u_zagradama = init_znakovi.size();
+    //pomicanje varijabli zbog konteksta i ret
+    Pomakni_varijable(nova_tablica.lok_var, 7*4);
 	
 	
 	arg1.produkcija(produkcija.nodes[1], nova_tablica);
 	Lista_naredbi::produkcija(produkcija.nodes[2], nova_tablica);
 	tablica.lokalne_tablice.push_back(nova_tablica);
-cerr << "ASDFDASSGSDFGDSGSADSFSAD22222222222" << endl;
+	
+	
+	//micanje stoga unazat
+	for(int brojac = 0; brojac != nova_tablica.lok_var->varijable.size()-nova_tablica.lok_var->broj_varijabli_u_zagradama; brojac++)
+	   FRISC::ADD("R7", "4", "R7");
+	
 	
 	//može se vratiti prazna izvedbena_vrijednost jer
 	//produkcija ništa nevraèa

@@ -27,25 +27,25 @@ povratni_tip Deklaracija_parametra::produkcija(Node produkcija, Tablica_djelokru
 
 povratni_tip Deklaracija_parametra::produkcija1(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
 
-	povratni_tip povratna1, xy;
+	povratni_tip povratna1;
 	Ime_tipa imeTipa;
 	povratna1 = imeTipa.produkcija(produkcija.nodes[0], tablica);
 	
-	xy.tip = povratna1.tip;
-	xy.ime = vratiTrecistring(produkcija.nodes[1].znak);
+	povratna1.ime = vratiTrecistring(produkcija.nodes[1].znak);
+	povratna1.ime_varijable = povratna1.ime;
 
-	return xy;
+	return povratna1;
 }
 
 povratni_tip Deklaracija_parametra::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
 
-	povratni_tip povratna1, xy;
+	povratni_tip povratna1;
 	Ime_tipa imeTipa;
 	povratna1 = imeTipa.produkcija(produkcija.nodes[0], tablica);
 
-	xy.tip = povratna1.tip;
-	xy.ime = vratiTrecistring(produkcija.nodes[1].znak);
+	povratna1.ime = vratiTrecistring(produkcija.nodes[1].znak);
+	povratna1.ime_varijable = povratna1.ime;
 
-	return xy;
+	return povratna1;
 }
 

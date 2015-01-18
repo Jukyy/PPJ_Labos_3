@@ -23,14 +23,12 @@ povratni_tip Lista_argumenata::produkcija(Node produkcija, Tablica_djelokruga &t
 
 povratni_tip Lista_argumenata::produkcija1(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
 
-	povratni_tip xy, povratna;
+	povratni_tip povratna;
 	Izraz_pridruzivanja IzrazPridruzivanja;
 
 	povratna = IzrazPridruzivanja.produkcija(produkcija.nodes[0], tablica);
 
-	xy.tip = povratna.tip;
-
-	return xy;
+	return povratna;
 }
 
 povratni_tip Lista_argumenata::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){

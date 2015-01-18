@@ -22,16 +22,24 @@ povratni_tip Bin_xili_izraz::produkcija1(Node produkcija, Tablica_djelokruga &ta
 }
 
 povratni_tip Bin_xili_izraz::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
-	povratni_tip izvedbena_vrijednost;
-	izvedbena_vrijednost.tip = "int";
-	izvedbena_vrijednost.l_izraz = false;
 	Node node1 = produkcija.nodes[0];
 	Node node2 = produkcija.nodes[2];
 	
 	Bin_xili_izraz izraz1;
 	povratni_tip vrijednost1 = izraz1.produkcija(node1, tablica);
+	FRISC::LOAD("R5", vrijednost1.ime_varijable, tablica.lok_var);
 	Bin_i_izraz izraz2;
 	povratni_tip vrijednost2 = izraz2.produkcija(node2, tablica);
+    FRISC::LOAD("R4", vrijednost2.ime_varijable, tablica.lok_var);
 	
-	return izvedbena_vrijednost;
+	vrijednost1.tip = "int";
+	vrijednost1.l_izraz = false;
+	
+	//LABOS 4
+    FRISC::XOR("R5", "R4", "R5");
+    FRISC::STORE("R5", "TEMP", tablica.lok_var);
+    vrijednost1.ime_varijable = "TEMP";
+	
+	
+	return vrijednost1;
 }

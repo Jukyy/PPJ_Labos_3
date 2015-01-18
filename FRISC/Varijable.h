@@ -9,16 +9,13 @@ struct Lokalne_varijable
    map<string, int> varijable;
    Lokalne_varijable * nadtablica;
    Lokalne_varijable * podtablica;
+   int broj_varijabli_u_zagradama;
 };
 
 //ubacivanje varijable u listu
 void Registriraj_varijablu(Lokalne_varijable * tablica, string ime)
 {
-	cerr << "doso sam tu " << endl;
-	cerr << ime << endl;
    map<string, int>::iterator it = tablica->varijable.begin();
-	cerr << "doso sam tu " << endl;
-	cerr << ime << endl;
    //povecaj sve offsete za 4
    while(it != tablica->varijable.end())
    {
@@ -26,23 +23,29 @@ void Registriraj_varijablu(Lokalne_varijable * tablica, string ime)
       it++;
    }
    //dodaj novu varijablu
-   
-	cerr << "doso sam tu " << endl;
-	cerr << ime << endl;
    tablica->varijable[ime] = 0;
    
+   return;
+}
+
+//funkcija za pomicanje u stogu
+void Pomakni_varijable(Lokalne_varijable * tablica, int koliko)
+{
+   map<string, int>::iterator it = tablica->varijable.begin();
+   while(it != tablica->varijable.end())
+   {
+            cerr << it->second << endl;
+      it->second += koliko;
+      it++;
+   }
    return;
 }
 
 //funkcija koju treba pozvati kada se ulazi u blok
 Lokalne_varijable * Stvori_novu_tablicu(Lokalne_varijable * nadtablica)
 {
-   Lokalne_varijable *nova_tablica = (Lokalne_varijable*)malloc(sizeof(Lokalne_varijable));
-   
-   map<string, int> m;
-   nova_tablica->varijable = m;
+   struct::Lokalne_varijable *nova_tablica = new struct::Lokalne_varijable[sizeof(Lokalne_varijable)];
    nova_tablica->nadtablica = nadtablica;
-   nova_tablica->podtablica = NULL;
    
    return nova_tablica;
 }

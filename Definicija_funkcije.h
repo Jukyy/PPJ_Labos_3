@@ -72,14 +72,11 @@ povratni_tip Definicija_funkcije::produkcija1(Node produkcija, Tablica_djelokrug
     //6 pravim novu tablicu za slozenu naredbu (blok)
 	vector<Znakovi> lokalne_variable;
 	
-	
 	//LABOS 4 - dodavanje labele funkcije
 	Stvori_novu_labelu("F_" + IDNime);
 	cout << Vrati_labelu("F_" + IDNime) << endl;
 	//spremanje konteksta
-	if(IDNime != "main")
-	   FRISC::spremiKontekst();
-	
+    FRISC::spremiKontekst();
 	
 	xy = Slozena_naredba::produkcija(produkcija.nodes[5], tablica, lokalne_variable);
 	
@@ -158,14 +155,11 @@ povratni_tip Definicija_funkcije::produkcija2(Node produkcija, Tablica_djelokrug
 	   brojac++;
     }
     
-    
 	//LABOS 4 - dodavanje labele funkcije
 	Stvori_novu_labelu("F_" + IDNime);
 	cout << Vrati_labelu("F_" + IDNime) << endl;
 	//spremanje konteksta
-	if(IDNime != "main")
-	   FRISC::spremiKontekst();
-    
+	FRISC::spremiKontekst();
     
 	xy = Slozena_naredba::produkcija(produkcija.nodes[5], tablica, lokalne_variable);
 	

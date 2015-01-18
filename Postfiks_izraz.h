@@ -68,7 +68,10 @@ povratni_tip Postfiks_izraz::produkcija3(Node produkcija, Tablica_djelokruga &ta
     izvedbena_vrijednost.l_izraz = false;
     
 	//LABOS 4 prosljedjivanje imena_varijable
-	izvedbena_vrijednost.ime_varijable = vrijednost.ime_varijable;
+	izvedbena_vrijednost.ime_varijable = vrijednost.ime_varijable.substr(2);
+	FRISC::CALL(Vrati_labelu("F_" + izvedbena_vrijednost.ime_varijable));
+	FRISC::STORE("R6", "TEMP", tablica.lok_var);
+	izvedbena_vrijednost.ime_varijable = "TEMP";
     
 	return izvedbena_vrijednost;
 }
@@ -83,6 +86,39 @@ povratni_tip Postfiks_izraz::produkcija4(Node produkcija, Tablica_djelokruga &ta
     Lista_argumenata list_args;
     povratni_tip vrijednost_args = list_args.produkcija(node2, tablica);
     
+    //LABOS 4 prosljedjivanje varijable
+    //globalno ili konst
+    string imena = vrijednost_args.ime_varijable + ",";
+    string jedno_ime;
+    
+    while(imena.find(",") != string::npos)
+    {
+        jedno_ime = imena.substr(0, imena.find(","));
+        imena = imena.substr(imena.find(",") + 1);
+		
+		//ako je varijabla globalna
+		if(jedno_ime[0] != 'V')
+        {
+           FRISC::LOAD("R3", jedno_ime, tablica.lok_var);
+           FRISC::PUSH("R3");
+        }
+        else
+        {
+           //WAT DO?
+        }
+	}
+	FRISC::CALL(Vrati_labelu("F_" + vrijednost_izraz.ime_varijable.substr(2)));
+	FRISC::STORE("R6", "TEMP", tablica.lok_var);
+	//POPANJE STOGA KAO
+	imena = vrijednost_args.ime_varijable + ",";
+    while(imena.find(",") != string::npos)
+    {
+        imena = imena.substr(imena.find(",") + 1);
+		FRISC::ADD("R7", "4", "R7");
+	}
+	
+	izvedbena_vrijednost.ime_varijable = "TEMP";
+	
     
     std::string tip = vrijednost_izraz.tip;
     std::string pov, args, params;
@@ -125,9 +161,6 @@ povratni_tip Postfiks_izraz::produkcija4(Node produkcija, Tablica_djelokruga &ta
         }
         if(i + 1 == params.size()) param.push_back(params.substr(last, i + 1));
     }*/
-    
-	//LABOS 4 prosljedjivanje imena_varijable
-	izvedbena_vrijednost.ime_varijable = vrijednost_izraz.ime_varijable;
     
 	return izvedbena_vrijednost;
 }

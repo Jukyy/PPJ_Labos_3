@@ -65,7 +65,23 @@ povratni_tip Naredba_skoka::produkcija4(Node produkcija, Tablica_djelokruga &tab
 	izvedbena_vrijednost1 = arg1.produkcija(produkcija.nodes[1], tablica);
 	
 	//LABOS 4 kod za return
-	FRISC::LOAD("R6", izvedbena_vrijednost1.ime_varijable);
+	FRISC::LOAD("R6", izvedbena_vrijednost1.ime_varijable, tablica.lok_var);
+	
+	Lokalne_varijable * trenutna_tablica = tablica.lok_var;
+	int broj_pomaka_unazat = 0;
+	while(1)
+	{
+       broj_pomaka_unazat += trenutna_tablica->varijable.size() - trenutna_tablica->broj_varijabli_u_zagradama;
+       if(trenutna_tablica->nadtablica == NULL)
+          break;
+       else
+          trenutna_tablica = trenutna_tablica->nadtablica;
+    }
+	//micanje stoga unazat
+	for(int brojac = 0; brojac != broj_pomaka_unazat; brojac++)
+	   FRISC::ADD("R7", "4", "R7");
+	
+	FRISC::vratiKontekst();
 	FRISC::RET();
 
 	while (true){

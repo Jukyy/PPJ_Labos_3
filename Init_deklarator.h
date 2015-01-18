@@ -30,6 +30,17 @@ povratni_tip Init_deklarator::produkcija1(Node produkcija, Tablica_djelokruga &t
 	
 	povratna = IzravniDeklarator.produkcija(produkcija.nodes[0], tablica, ntip);
 	
+	//LABOS 4 postavljanje pocetne vrijednosti globalne varijable ako nista nije specificirano (0 = DEFAULT)
+	if(tablica.is_global)
+	{
+	   Postavi_pocetnu_vrijednost(povratna.ime_varijable, "0");
+    }
+    //deklaracija nove varijable bez pocetne vrijednosti
+    else
+    {
+       FRISC::SUB("R7", "4", "R7");
+    }
+	
 	return xy;
 }
 
@@ -40,6 +51,17 @@ povratni_tip Init_deklarator::produkcija2(Node produkcija, Tablica_djelokruga &t
 	Inicijalizator inicijalizator;
 	
 	povratna1 = IzravniDeklarator.produkcija(produkcija.nodes[0], tablica, ntip);
+	
+	//LABOS 4 postavljanje pocetne vrijednosti globalne varijable
+	if(tablica.is_global)
+	{
+    }
+    //postavljanje pocetne vrijednosti lokalne varijable
+    else
+    {
+        FRISC::SUB("R7", "4", "R7");
+    }
+	
 	povratna2 = inicijalizator.produkcija(produkcija.nodes[2], tablica);
 	
 	//LABOS 4 postavljanje pocetne vrijednosti globalne varijable
@@ -48,9 +70,11 @@ povratni_tip Init_deklarator::produkcija2(Node produkcija, Tablica_djelokruga &t
 	   string temp = povratna2.ime_varijable.substr(povratna2.ime_varijable.find_last_of("_")+1);
 	   Postavi_pocetnu_vrijednost(povratna1.ime_varijable, konstante[atoi(temp.c_str())-1]);
     }
+    //postavljanje pocetne vrijednosti lokalne varijable
     else
     {
-       //NAPRAVITI ZA LOKALNE MORAS
+        FRISC::LOAD("R5", povratna2.ime_varijable, tablica.lok_var);
+        FRISC::STORE("R5", povratna1.ime_varijable, tablica.lok_var);
     }
     
 	std::string tip = povratna1.tip;

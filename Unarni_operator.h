@@ -20,11 +20,11 @@ povratni_tip Unarni_operator::produkcija(Node produkcija, Tablica_djelokruga &ta
 	   xy = Unarni_operator::produkcija2(produkcija.nodes[0], tablica, ntip);
     //produkcija 3
     else if(produkcija.nodes.size() == 1
-        && produkcija.nodes[0].znak.substr(0, produkcija.nodes[0].znak.find(" ")) == "OP_")
+        && produkcija.nodes[0].znak.substr(0, produkcija.nodes[0].znak.find(" ")) == "OP_TILDA")
 	   xy = Unarni_operator::produkcija3(produkcija.nodes[0], tablica, ntip);
     //produkcija 4
     else if(produkcija.nodes.size() == 1
-         && produkcija.nodes[0].znak.substr(0, produkcija.nodes[0].znak.find(" ")) == "KR_INT")
+         && produkcija.nodes[0].znak.substr(0, produkcija.nodes[0].znak.find(" ")) == "OP_NEG")
 	   xy = Unarni_operator::produkcija4(produkcija.nodes[0], tablica, ntip);
 
 	return xy; //nasumièna varijabla xy je tu samo radi toènosti kompaliranja (zamjeni je s potrebnim vrijednostima)
@@ -34,27 +34,35 @@ povratni_tip Unarni_operator::produkcija(Node produkcija, Tablica_djelokruga &ta
 povratni_tip Unarni_operator::produkcija1(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
 	povratni_tip xy;
-
+	
+	xy.ime_varijable = "PLUS";
+	
 	return xy;
 }
 
 povratni_tip Unarni_operator::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
 	povratni_tip xy;
-
+	
+	xy.ime_varijable = "MINUS";
+	
 	return xy;
 }
 
 povratni_tip Unarni_operator::produkcija3(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
 	povratni_tip xy;
-
+	
+	xy.ime_varijable = "OP_TILDA";
+	
 	return xy;
 }
 
 povratni_tip Unarni_operator::produkcija4(Node produkcija, Tablica_djelokruga &tablica, std::string ntip)
 {
 	povratni_tip xy;
-
+	
+	xy.ime_varijable = "OP_NEG";
+	
 	return xy;
 }

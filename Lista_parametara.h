@@ -57,5 +57,8 @@ povratni_tip Lista_parametara::produkcija2(Node produkcija, Tablica_djelokruga &
 	xy.tip = xy.tip + "," + xy2.tip;
 	xy.ime = xy.ime + "," + xy2.ime;
 	
+	//LABOS 4
+	xy.ime_varijable = xy.ime;
+	
 	return xy;
 }

@@ -10,7 +10,6 @@ vector <string> konstante;
 //napravi novi tip labele
 void Stvori_novu_labelu(string labela)
 {
-    cerr << "CCCCCCCCCCCCCCCCCCCCCCCCCCCCC" << endl;
    //ako je labela funkcije onda se ponasaj na drugi nacin
    //samo jednom se moze deklarirat i nikad vise
    if(labela[0] == 'F')
@@ -55,7 +54,6 @@ void Stvori_novu_labelu(string labela, string vrijednost)
 //mjenjanje pocente vrijednosti varijable
 void Postavi_pocetnu_vrijednost(string labela, string vrijednost)
 {
-     cerr << "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" << endl;
    labele[labela] = atoi(vrijednost.c_str());
    return;
 }
@@ -63,7 +61,6 @@ void Postavi_pocetnu_vrijednost(string labela, string vrijednost)
 //formatiraj zadnje dodanu labelu nekog tipa u string
 string Vrati_labelu(string labela)
 {
-       cerr << "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB" << endl;
    char nesto[50];
    sprintf(nesto, "%d\0", labele[labela]);
    string ret(nesto);

@@ -27,18 +27,12 @@ povratni_tip Izraz_pridruzivanja::produkcija(Node produkcija, Tablica_djelokruga
 
 povratni_tip Izraz_pridruzivanja::produkcija1(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
 	
-	povratni_tip povratna, xy;
+	povratni_tip povratna;
 	Log_ili_izraz LogIliIzraz;
 	
 	povratna = LogIliIzraz.produkcija(produkcija.nodes[0], tablica);
 	
-	xy.tip = povratna.tip;
-	xy.l_izraz = povratna.l_izraz;
-	
-	//LABOS 4 prosljedjivanje imena_varijable
-	xy.ime_varijable = povratna.ime_varijable;
-
-	return xy;
+	return povratna;
 }
 
 povratni_tip Izraz_pridruzivanja::produkcija2(Node produkcija, Tablica_djelokruga &tablica, std::string ntip){
