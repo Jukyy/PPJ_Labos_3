@@ -59,7 +59,15 @@ povratni_tip Primarni_izraz::produkcija1(Node produkcija, Tablica_djelokruga &ta
     }
     
     //LABOS 4 dodavanje imena varijable ako je IDN
-    izvedbena_vrijednost.ime_varijable = "V_" + ime;
+    if(tablica.lok_var == NULL)
+       izvedbena_vrijednost.ime_varijable = "G_" + ime;
+    else
+    {
+       if(Pronadji_offset_varijable(tablica.lok_var, ime) == -1)
+          izvedbena_vrijednost.ime_varijable = "G_" + ime;
+       else
+          izvedbena_vrijednost.ime_varijable = "V_" + ime;
+    }
 
 	return izvedbena_vrijednost;
 }

@@ -48,6 +48,9 @@ povratni_tip Inicijalizator::produkcija1(Node produkcija, Tablica_djelokruga &ta
     {
 		xy.tip = povratna.tip;
 	}
+	
+	//LABOS 4 prosljedjivanje varijabli
+	xy.ime_varijable = povratna.ime_varijable;
 
 	return xy;
 }
@@ -61,6 +64,9 @@ povratni_tip Inicijalizator::produkcija2(Node produkcija, Tablica_djelokruga &ta
 	
 	xy.broj = povratna.broj;
 	xy.tip = povratna.tip;
+	
+	//LABOS 4 prosljedjivanje varijabli
+	xy.ime_varijable = povratna.ime_varijable;
 
 	return xy;
 }

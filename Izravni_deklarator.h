@@ -49,8 +49,17 @@ povratni_tip Izravni_deklarator::produkcija1(Node produkcija, Tablica_djelokruga
 	tablica.lokalne_variable.push_back(znak);
 	
 	//LABOS 4 stavljamo varijable u tablice
-	Registriraj_varijablu(tablica.lok_var, "V_" + znak.ime);
-
+	if(!tablica.is_global)
+	{
+       Registriraj_varijablu(tablica.lok_var, "V_" + znak.ime);
+	   xy.ime_varijable = "V_" + znak.ime;
+    }
+    else
+    {
+       Stvori_novu_labelu("G_" + znak.ime);
+	   xy.ime_varijable = "G_" + znak.ime;
+    }
+	
 	return xy;
 }
 

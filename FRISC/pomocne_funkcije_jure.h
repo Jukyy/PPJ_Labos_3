@@ -29,12 +29,14 @@ int string_to_int(std::string input){
 	}
 }
 
+//ne mjenjaj ovo!
 void zapisiLabele(){
 	map<std::string, int>::iterator it;
 	for (it = labele.begin(); it != labele.end(); it++){
-		if (it->first[0] == 'V'){
+		if (it->first[0] == 'G')
 			FRISC::spremiKonstantu(it->first, it->second);
-		}
+		else if(it->first[0] == 'T')
+			FRISC::spremiKonstantu(it->first, it->second);
 	}
 }
 

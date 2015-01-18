@@ -75,6 +75,8 @@ int main()
     {
         FRISC::pocetneInstrukcije();
         
+        Stvori_novu_labelu("TEMP", "0");
+        
 		Prijevodna_jedinica::produkcija(head, globalna);
 		
 		zapisiLabele();

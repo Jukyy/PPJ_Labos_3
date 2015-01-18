@@ -41,7 +41,18 @@ povratni_tip Init_deklarator::produkcija2(Node produkcija, Tablica_djelokruga &t
 	
 	povratna1 = IzravniDeklarator.produkcija(produkcija.nodes[0], tablica, ntip);
 	povratna2 = inicijalizator.produkcija(produkcija.nodes[2], tablica);
-
+	
+	//LABOS 4 postavljanje pocetne vrijednosti globalne varijable
+	if(tablica.is_global)
+	{
+	   string temp = povratna2.ime_varijable.substr(povratna2.ime_varijable.find_last_of("_")+1);
+	   Postavi_pocetnu_vrijednost(povratna1.ime_varijable, konstante[atoi(temp.c_str())-1]);
+    }
+    else
+    {
+       //NAPRAVITI ZA LOKALNE MORAS
+    }
+    
 	std::string tip = povratna1.tip;
 	if (tip.find("niz") == std::string::npos)
 		tip = skini(tip, "const");

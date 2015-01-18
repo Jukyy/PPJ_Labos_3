@@ -43,6 +43,7 @@ povratni_tip Slozena_naredba::produkcija1(Node produkcija, Tablica_djelokruga &t
 	
 	Lista_naredbi::produkcija(produkcija.nodes[1], nova_tablica);
 	tablica.lokalne_tablice.push_back(nova_tablica);
+cerr << "ASDFDASSGSDFGDSGSADSFSAD" << endl;
 
 	//može se vratiti prazna izvedbena_vrijednost jer
 	//produkcija ništa nevraèa
@@ -81,6 +82,7 @@ povratni_tip Slozena_naredba::produkcija2(Node produkcija, Tablica_djelokruga &t
 	arg1.produkcija(produkcija.nodes[1], nova_tablica);
 	Lista_naredbi::produkcija(produkcija.nodes[2], nova_tablica);
 	tablica.lokalne_tablice.push_back(nova_tablica);
+cerr << "ASDFDASSGSDFGDSGSADSFSAD22222222222" << endl;
 	
 	//može se vratiti prazna izvedbena_vrijednost jer
 	//produkcija ništa nevraèa

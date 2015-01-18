@@ -14,7 +14,11 @@ struct Lokalne_varijable
 //ubacivanje varijable u listu
 void Registriraj_varijablu(Lokalne_varijable * tablica, string ime)
 {
+	cerr << "doso sam tu " << endl;
+	cerr << ime << endl;
    map<string, int>::iterator it = tablica->varijable.begin();
+	cerr << "doso sam tu " << endl;
+	cerr << ime << endl;
    //povecaj sve offsete za 4
    while(it != tablica->varijable.end())
    {
@@ -22,6 +26,9 @@ void Registriraj_varijablu(Lokalne_varijable * tablica, string ime)
       it++;
    }
    //dodaj novu varijablu
+   
+	cerr << "doso sam tu " << endl;
+	cerr << ime << endl;
    tablica->varijable[ime] = 0;
    
    return;
@@ -32,6 +39,8 @@ Lokalne_varijable * Stvori_novu_tablicu(Lokalne_varijable * nadtablica)
 {
    Lokalne_varijable *nova_tablica = (Lokalne_varijable*)malloc(sizeof(Lokalne_varijable));
    
+   map<string, int> m;
+   nova_tablica->varijable = m;
    nova_tablica->nadtablica = nadtablica;
    nova_tablica->podtablica = NULL;
    

@@ -2,7 +2,3 @@
 	CALL F_main_1
 	HALT
 F_main_1
-	LOAD R6, (K_K_1)
-	RET
-K_K_1
-	DW %D 31
