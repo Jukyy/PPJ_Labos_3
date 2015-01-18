@@ -62,12 +62,27 @@ povratni_tip Odnosni_izraz::produkcija2(Node produkcija, Tablica_djelokruga &tab
 	//1
 	xy = Odnosni_izraz::produkcija(produkcija.nodes[0], tablica, ntip);
 	//2
+	FRISC::LOAD("R0", xy.ime_varijable, tablica.lok_var);
 	//3
     xy2 = aditivni_izraz.produkcija(produkcija.nodes[2], tablica, ntip);
 	//4
+	FRISC::LOAD("R1", xy2.ime_varijable, tablica.lok_var);
+	
+	FRISC::CMP("R0", "R1");
+	Stvori_novu_labelu("U_SLT_t");
+	Stvori_novu_labelu("U_SLT_f");
+	FRISC::JP("SLT", Vrati_labelu("U_SLT_t"));
+	FRISC::MOVE("0", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::JP(Vrati_labelu("U_SLT_f"));
+	FRISC::label(Vrati_labelu("U_SLT_t"));
+	FRISC::MOVE("1", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::label(Vrati_labelu("U_SLT_f"));
 	
 	xy.l_izraz = false;
 	xy.tip = "int";
+	xy.ime_varijable = "TEMP";
 	return xy;
 }
 
@@ -80,12 +95,27 @@ povratni_tip Odnosni_izraz::produkcija3(Node produkcija, Tablica_djelokruga &tab
 	//1
 	xy = Odnosni_izraz::produkcija(produkcija.nodes[0], tablica, ntip);
 	//2
+	FRISC::LOAD("R0", xy.ime_varijable, tablica.lok_var);
 	//3
     xy2 = aditivni_izraz.produkcija(produkcija.nodes[2], tablica, ntip);
 	//4
+	FRISC::LOAD("R1", xy2.ime_varijable, tablica.lok_var);
+	
+	FRISC::CMP("R0", "R1");
+	Stvori_novu_labelu("U_SGT_t");
+	Stvori_novu_labelu("U_SGT_f");
+	FRISC::JP("SGT", Vrati_labelu("U_SGT_t"));
+	FRISC::MOVE("0", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::JP(Vrati_labelu("U_SGT_f"));
+	FRISC::label(Vrati_labelu("U_SGT_t"));
+	FRISC::MOVE("1", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::label(Vrati_labelu("U_SGT_f"));
 	
 	xy.l_izraz = false;
 	xy.tip = "int";
+	xy.ime_varijable = "TEMP";
 	return xy;
 }
 
@@ -98,12 +128,27 @@ povratni_tip Odnosni_izraz::produkcija4(Node produkcija, Tablica_djelokruga &tab
 	//1
 	xy = Odnosni_izraz::produkcija(produkcija.nodes[0], tablica, ntip);
 	//2
+	FRISC::LOAD("R0", xy.ime_varijable, tablica.lok_var);
 	//3
     xy2 = aditivni_izraz.produkcija(produkcija.nodes[2], tablica, ntip);
 	//4
+	FRISC::LOAD("R1", xy2.ime_varijable, tablica.lok_var);
+	
+	FRISC::CMP("R0", "R1");
+	Stvori_novu_labelu("U_SLE_t");
+	Stvori_novu_labelu("U_SLE_f");
+	FRISC::JP("SLE", Vrati_labelu("U_SLE_t"));
+	FRISC::MOVE("0", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::JP(Vrati_labelu("U_SLE_f"));
+	FRISC::label(Vrati_labelu("U_SLE_t"));
+	FRISC::MOVE("1", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::label(Vrati_labelu("U_SLE_f"));
 	
 	xy.l_izraz = false;
 	xy.tip = "int";
+	xy.ime_varijable = "TEMP";
 	return xy;
 }
 
@@ -116,11 +161,26 @@ povratni_tip Odnosni_izraz::produkcija5(Node produkcija, Tablica_djelokruga &tab
 	//1
 	xy = Odnosni_izraz::produkcija(produkcija.nodes[0], tablica, ntip);
 	//2
+	FRISC::LOAD("R0", xy.ime_varijable, tablica.lok_var);
 	//3
     xy2 = aditivni_izraz.produkcija(produkcija.nodes[2], tablica, ntip);
 	//4
+	FRISC::LOAD("R1", xy2.ime_varijable, tablica.lok_var);
+	
+	FRISC::CMP("R0", "R1");
+	Stvori_novu_labelu("U_SGE_t");
+	Stvori_novu_labelu("U_SGE_f");
+	FRISC::JP("SGE", Vrati_labelu("U_SGE_t"));
+	FRISC::MOVE("0", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::JP(Vrati_labelu("U_SGE_f"));
+	FRISC::label(Vrati_labelu("U_SGE_t"));
+	FRISC::MOVE("1", "R0");
+	FRISC::STORE("R0", "TEMP", tablica.lok_var);
+	FRISC::label(Vrati_labelu("U_SGE_f"));
 	
 	xy.l_izraz = false;
 	xy.tip = "int";
+	xy.ime_varijable = "TEMP";
 	return xy;
 }

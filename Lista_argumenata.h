@@ -41,6 +41,7 @@ povratni_tip Lista_argumenata::produkcija2(Node produkcija, Tablica_djelokruga &
 	povratna2 = IzrazPridurzivanja.produkcija(produkcija.nodes[2], tablica);
 	
 	xy.tip = povratna1.tip + "," + povratna2.tip;
+	xy.ime_varijable = povratna1.ime_varijable + "," + povratna2.ime_varijable;
 
 	return xy;
 }

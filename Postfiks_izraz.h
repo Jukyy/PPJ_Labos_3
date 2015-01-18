@@ -96,16 +96,8 @@ povratni_tip Postfiks_izraz::produkcija4(Node produkcija, Tablica_djelokruga &ta
         jedno_ime = imena.substr(0, imena.find(","));
         imena = imena.substr(imena.find(",") + 1);
 		
-		//ako je varijabla globalna
-		if(jedno_ime[0] != 'V')
-        {
-           FRISC::LOAD("R3", jedno_ime, tablica.lok_var);
-           FRISC::PUSH("R3");
-        }
-        else
-        {
-           //WAT DO?
-        }
+		FRISC::LOAD("R3", jedno_ime, tablica.lok_var);
+        FRISC::PUSH("R3");
 	}
 	FRISC::CALL(Vrati_labelu("F_" + vrijednost_izraz.ime_varijable.substr(2)));
 	FRISC::STORE("R6", "TEMP", tablica.lok_var);
