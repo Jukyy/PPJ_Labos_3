@@ -126,7 +126,36 @@ public:
 	}
 
 	static void funkcijaOstatak(){
+		cout << "MODUL" << endl;
+		cout << "\tPUSH R0" << endl;
+		cout << "\tPUSH R1" << endl;
+		cout << "\tPUSH R2" << endl;
+		cout << "\tLOAD R0, (R7 + 10)" << endl;
+		cout << "\tLOAD R1, (R7 + 14)" << endl;
+		cout << "\tMOVE 0, R2" << endl;
 
+		cout << "MODUL_FIRST" << endl;
+		cout << "\tADD R0, 0, R0" << endl;
+		cout << "\tJP_P MODUL_SECOND" << endl;
+		cout << "\tSUB R2, R0, R0" << endl;
+
+		cout << "MODUL_SECOND" << endl;
+		cout << "\tADD R1, 0, R1" << endl;
+		cout << "\tJP_P MODUL_LOOP" << endl;
+		cout << "\tSUB R2, R1, R1" << endl;
+
+		cout << "MODUL_LOOP" << endl;
+		cout << "\tSUB R0, R1, R0" << endl;
+		cout << "\tJP_N MODUL_END" << endl;
+		cout << "\tJP MODUL_LOOP" << endl;
+		
+		cout << "MODUL_END" << endl;
+		cout << "\tADD R0, R1, R0" << endl;
+		cout << "\tMOVE R0, R6" << endl;
+		cout << "\tPOP R2" << endl;
+		cout << "\tPOP R1" << endl;
+		cout << "\tPOP R0" << endl;
+		cout << "\tRET" << endl;
 	}
 
 	static void label(std::string label){
